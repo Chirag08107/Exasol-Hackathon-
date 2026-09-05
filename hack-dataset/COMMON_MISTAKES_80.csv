@@ -1,0 +1,91 @@
+mistake_id,form_id,field_id,mistake,explanation,severity,prevention_tip
+1,1,1,Name not matching PAN,Applicants write name differently than on PAN which causes rejection,HIGH,Always use exact name from PAN document - match case and spelling
+2,1,2,Invalid PAN format,Writing PAN without proper format (5 letters + 4 numbers + 1 letter),HIGH,PAN format is always ABCDE1234F - verify all 10 characters
+3,1,3,Wrong date format,Writing date in different format than DD/MM/YYYY,HIGH,Always use DD/MM/YYYY format - 15/06/1985 not 1985-06-15
+4,1,6,Reporting wrong income,Reporting income from different financial year,HIGH,Check financial year - always report income from April to March
+5,2,9,Father name blank,Leaving father's name field empty,HIGH,Father's name is mandatory - write complete legal name
+6,2,15,Invalid email format,Writing email without @ or with multiple @ symbols,MEDIUM,Email format: name@domain.com - check for @ and single domain
+7,3,17,Incomplete business name,Writing short business name without legal entity designation,HIGH,Use full legal name - include Ltd/Pvt Ltd/Partnership as applicable
+8,3,18,Underreporting turnover,Reporting lower turnover to avoid taxes,HIGH,Report actual turnover from sales books - GST wants accurate data
+9,3,19,Using personal PAN instead of business PAN,Filing GST with personal PAN instead of business entity PAN,HIGH,Use only business entity PAN - personal PAN is incorrect
+10,4,23,Nickname instead of legal name,Writing nickname instead of name from legal documents,HIGH,Use name exactly as in birth certificate or school certificate
+11,4,28,Adding country code to phone,Writing +91 or 0 before 10-digit number,HIGH,Write only 10 digits - system adds country code automatically
+12,5,31,Applicant age too young,Applying for passport before turning 18,HIGH,Minimum age is 18 - wait until birthday or use minor passport process
+13,5,35,Invalid mobile format,Writing mobile with dashes or spaces,HIGH,Enter 10 digits continuously without any special characters
+14,6,39,Age miscalculation,Applying with age less than required minimum,HIGH,Minimum age for DL is 18 - check birth certificate before applying
+15,7,45,Age proof missing,Not attaching birth certificate,HIGH,Birth certificate is mandatory - scan and attach certified copy
+16,8,52,Wrong occupation category,Selecting wrong occupation type,MEDIUM,Select occupation that matches main income source - not secondary job
+17,9,60,PAN number typo,Writing wrong PAN with transposed digits,HIGH,Double-check PAN - compare with document character by character
+18,10,64,Old employer PF number,Using old employer's PF account number instead of personal ID,HIGH,Use your member ID - format is ABC/1234567/00001234
+19,11,70,Incomplete claim number,Writing incomplete ESI number,HIGH,ESI number is always 8 digits - no space or dash
+20,12,79,Inflated marks,Reporting higher marks than actual achievement,HIGH,Copy marks exactly from mark sheet - institution verifies
+21,13,84,Wrong area measurement,Reporting area in different unit than specified,HIGH,Specification clearly states square feet - convert if needed
+22,14,91,Understated property value,Reporting lower value for tax purposes,HIGH,Report fair market value - use comparable property prices
+23,15,97,Missing leading zeros,Writing short chassis numbers without zeros,HIGH,Chassis number is 17 characters - must have leading zeros if any
+24,16,98,Old registration format,Using old vehicle registration format,HIGH,Use current RC format: XX-XX-XX-XXXX (State-Year-Series-Number)
+25,17,106,Household income calculation error,Confusing household income with individual income,HIGH,Add ALL family member incomes for 12 months
+26,18,111,Wrong Aadhaar entry,Mistyping Aadhaar digits,HIGH,Enter Aadhaar exactly as on card - double-check all 12 digits
+27,19,115,Excluding some family members,Not counting all household members,HIGH,List all dependents living in house - include children and elders
+28,20,119,Incorrect date of birth,Off-by-one year in birth date,HIGH,Match birth certificate exactly - verify year/month/day
+29,21,126,Reporting variable income,Including seasonal or bonus income in monthly average,MEDIUM,Show consistent monthly income - avoid year-end bonus spikes
+30,21,127,Requesting excessive loan amount,Asking for more than debt service ratio allows,MEDIUM,Most banks limit to 50-60% of monthly income
+31,22,133,Outdated address proof,Using old utility bill more than 3 months old,HIGH,Use recent address proof - from last 3 months only
+32,23,135,Incomplete trading account opening,Not linking bank account for trading,HIGH,Bank account linkage is mandatory - complete it before first trade
+33,24,140,Using business name for personal investment,Writing company name in personal mutual fund form,HIGH,Use personal name - mutual funds are held individually
+34,25,146,Wrong date of birth,Mismatching date with identity documents,HIGH,Use date from official document - Aadhaar/PAN/Passport
+35,26,151,Incomplete PF transfer form,Leaving employer details blank,HIGH,Provide both old and new employer EPF codes
+36,27,153,Applying too early,Claiming settlement before qualifying period ends,HIGH,Minimum 2 years service required for withdrawal
+37,28,157,Missing medical certificate,Not attaching maternity confirmation,HIGH,Maternity benefit needs doctor's letter confirming pregnancy
+38,29,162,Wrong disability percentage,Misreporting disability severity,HIGH,Medical board assesses percentage - use their report only
+39,30,170,Wrong state code,Listing wrong state of residence,MEDIUM,Select current state of domicile - not state of birth
+40,31,170,Multiple applications,Filing multiple UPSC applications in same year,HIGH,Only one application allowed per exam session
+41,32,170,Wrong category selected,Claiming category not applicable,HIGH,Category must match legal status - SC/ST/OBC with valid certificate
+42,33,172,Old/expired passport,Using passport expiring within 6 months,HIGH,Passport must be valid for 6 months beyond travel date
+43,34,175,Wrong form version,Using old OCI form instead of current one,HIGH,Use latest form from official website - version matters
+44,35,178,Temporary address listed,Listing rental address as permanent,HIGH,Permanent address should be domicile - where you own property
+45,36,180,Using nickname in caste name,Entering caste by nickname instead of revenue record name,HIGH,Use exact caste name from revenue documents
+46,37,182,Rounding income,Reporting approximate instead of exact income,MEDIUM,Use actual certified income - round to nearest rupee
+47,38,199,Income from different year,Using previous year salary slip,HIGH,Use salary slip from current financial year
+48,39,205,Wrong account type,Opening wrong type of Demat account,MEDIUM,DP links BO - ensure account type matches investment plan
+49,40,215,Blank nominee field,Not filling nominee information,HIGH,Nominee is mandatory - provide complete details
+50,41,225,Incorrect NPS tier,Selecting Tier 2 account without Tier 1,HIGH,Tier 1 must be active before opening Tier 2
+51,42,235,Old employer code,Using previous employer's PF code instead of new one,HIGH,New employer provides new EPF code - use it for transfer
+52,43,245,Incomplete transfer form,Form 13 submitted without all signatures,HIGH,Both employers must sign - incomplete forms get rejected
+53,44,255,Wrong claim reason,Misclassifying reason for PF withdrawal,MEDIUM,Select actual reason - incorrect classification delays approval
+54,45,265,Incomplete medical details,Not providing hospital name and date,HIGH,Medical details are mandatory for claim verification
+55,46,275,Missing employment letter,Not attaching job offer or employment proof,HIGH,Employment proof is essential - attach official letter
+56,47,285,Wrong age calculation,Off-by-one year in age,HIGH,Verify birth date - age limit strictly enforced
+57,48,295,Incomplete education proof,Not attaching all semester mark sheets,HIGH,Attach complete academic record - all semesters required
+58,49,305,Using nickname,Filing with nickname instead of legal name,HIGH,Use name from official certificate - match exactly
+59,50,315,Wrong class selected,Selecting different exam class than currently studied,HIGH,Enter current class - exam class must match enrollment
+60,51,325,Incomplete school details,Not mentioning board (CBSE/ICSE/State),MEDIUM,Board name is mandatory - specify clearly
+61,52,335,Multiple exam registrations,Registering for same exam multiple times,HIGH,One registration per exam session - duplicate rejected
+62,53,345,Age limit violated,Applying above age limit,HIGH,Check age eligibility - age calculated as on cutoff date
+63,54,355,Wrong degree type,Claiming degree not yet completed,HIGH,Only completed degrees count - provisional certificates not accepted
+64,55,365,Incomplete land description,Survey number mentioned but boundaries unclear,HIGH,Include all identification details: plot/block/survey/area
+65,56,375,Old encumbrance certificate,Using encumbrance older than 6 months,MEDIUM,Recent certificate required - verify date of issue
+66,57,385,Missing gram panchayat seal,NOC submitted without official seal,HIGH,NOC must be sealed and signed by authorized officer
+67,58,395,Invalid PUC validity,Submitting expired pollution certificate,HIGH,PUC must be current - valid for 12 months from issue
+68,59,405,Wrong vehicle class,Registering two-wheeler as four-wheeler,HIGH,Vehicle class must match actual category
+69,60,415,Incomplete business address,Writing partial address without street/building number,HIGH,Address must be complete - street number essential
+70,60,415,Using residential address,Listing home address for business license,MEDIUM,Business address should be actual business location
+71,61,425,Missing authorized signatory,Application signed by wrong person,HIGH,Only shop owner or authorized agent can sign
+72,62,435,Wrong applicant entity,Individual applying instead of registered business,HIGH,IEC registration requires business entity status
+73,63,445,Missing bank account,Not providing business bank account number,HIGH,Bank account for business is mandatory
+74,64,455,Old partnership deed,Submitting partnership deed not updated,MEDIUM,Deed must be current - latest amendments included
+75,65,465,Incomplete BIS requirement,Not specifying product category for ISI,HIGH,Product category must be mentioned - determines test requirements
+76,66,475,Wrong food category,Misclassifying food business type,HIGH,Specify exact category: manufacturing/trading/retail
+77,67,485,Environmental impact underestimated,Not providing complete EIA report,HIGH,Environmental impact assessment is mandatory
+78,68,495,Wrong labor code,Using incorrect industrial classification code,MEDIUM,Classification determines labor law applicability
+79,69,505,Duplicate registration,Registering same birth with multiple offices,HIGH,Birth can be registered only once - in place of delivery
+80,70,515,Incorrect death date,Reporting wrong death date,HIGH,Death date must match medical certificate
+81,71,525,Marriage date inconsistency,Registration date differs from marriage date,MEDIUM,Certificate date is registration date - marriage date in details
+82,72,535,Wrong applicant,Non-heir applying for succession,HIGH,Only legal heirs can apply - relationship must be proven
+83,73,545,Invalid notary credentials,Document notarized by non-qualified notary,HIGH,Notary must be registered with Bar Council
+84,74,555,Frivolous RTI request,Requesting information already publicly available,MEDIUM,Check public domain first - avoid redundant requests
+85,75,565,Missing grievance details,Not providing specific instance of grievance,HIGH,Grievance must be specific - vague complaints dismissed
+86,76,575,Age limit exceeded,Applying above military age limit,HIGH,Age limits strictly enforced - check before applying
+87,77,585,Criminal record hidden,Not disclosing criminal conviction,HIGH,Criminal disclosure mandatory - false statement is perjury
+88,78,595,Wrong enrollment window,Applying outside scholarship season,MEDIUM,Applications accepted only during notification period
+89,79,605,Incomplete research proposal,Submitting vague or incomplete proposal,HIGH,Research proposal must be detailed and feasible
+90,80,615,Visa type mismatch,Applying for visa for different purpose than stated,HIGH,Visa purpose must match employment/education/travel

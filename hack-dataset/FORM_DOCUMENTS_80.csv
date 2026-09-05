@@ -1,0 +1,151 @@
+form_document_id,form_id,document_name,document_type,mandatory,condition,description
+1,1,PAN Certificate,Identity,1,All applicants,Permanent Account Number certificate issued by Income Tax Department
+2,1,Aadhaar Card,Identity,1,All applicants,12-digit Aadhaar number and card issued by UIDAI
+3,1,Passport,Identity,0,If PAN not available,Indian passport for foreign identity proof
+4,1,Income Proof,Financial,1,All applicants,Salary slip or income certificate from employer
+5,1,Bank Statement,Financial,1,All applicants,Bank account statement for last 6 months
+6,1,Investment Documents,Financial,0,If applicable,Proof of investments like bonds/mutual funds
+7,2,Birth Certificate,Personal,1,All applicants,Original or certified copy of birth certificate
+8,2,Class 10 Certificate,Education,0,If birth cert not available,SSLC or equivalent certificate
+9,2,Address Proof,Address,1,All applicants,Utility bill/rent agreement/property deed (not older than 3 months)
+10,2,Identity Proof,Identity,1,All applicants,Aadhaar/Voter ID/Driving License
+11,2,Police Clearance,Legal,1,All applicants,NOC from local police station
+12,2,Photographs,Personal,1,All applicants,4 passport-size colored photographs (4x6 cm)
+13,3,PAN Certificate,Identity,1,All applicants,Business entity PAN certificate
+14,3,Business License,Business,0,If applicable,Trade license or shop act certificate
+15,3,Address Proof,Address,1,All applicants,Property deed or rental agreement for business location
+16,3,Bank Account Documents,Financial,1,All applicants,Bank account statement showing business name
+17,3,Partnership Deed,Legal,0,If applicable,For partnership business entities
+18,3,Memorandum of Association,Legal,0,If applicable,For companies registered under Companies Act
+19,4,Identity Proof,Identity,1,All applicants,Aadhaar/Passport/Voter ID/Driving License
+20,4,Address Proof,Address,1,All applicants,Utility bill/property deed/rental agreement
+21,4,Photograph,Personal,1,All applicants,Colored passport-size photograph (4x6 cm)
+22,4,Birth Proof,Personal,0,If available,Birth certificate for proof of residence
+23,5,Birth Certificate,Personal,1,All applicants,Full birth certificate (certified copy)
+24,5,Proof of Citizenship,Identity,1,All applicants,Existing passport or naturalization certificate
+25,5,Address Proof,Address,1,All applicants,Utility bill/property deed showing residential address
+26,5,Police Clearance,Legal,1,All applicants,No objection certificate from police
+27,5,Photographs,Personal,1,All applicants,4 colored photographs (4x6 cm with white background)
+28,5,Marital Status Document,Personal,0,If applicable,Marriage certificate if married
+29,6,Birth Certificate,Personal,1,All applicants,Original or certified copy
+30,6,Address Proof,Address,1,All applicants,Utility bill/property deed (not older than 3 months)
+31,6,Photograph,Personal,1,All applicants,Colored passport-size photograph
+32,6,Medical Fitness Certificate,Medical,0,For heavy vehicles,From authorized medical practitioner
+33,6,Age Proof,Personal,1,All applicants,Birth certificate or school leaving certificate
+34,7,Birth Certificate,Personal,1,All applicants,Original or certified copy
+35,7,Citizenship Proof,Identity,1,All applicants,Passport/Aadhaar/Voter ID
+36,7,Address Proof,Address,1,All applicants,Utility bill/rental agreement (not older than 3 months)
+37,7,Photograph,Personal,1,All applicants,Colored photograph (3.5x4.5 cm)
+38,7,Educational Certificate,Education,0,If available,School or college certificate
+39,8,PAN Certificate,Identity,1,All applicants,Permanent Account Number certificate
+40,8,Business Registration,Business,1,All applicants,Business registration certificate or partnership deed
+41,8,Profit Loss Statement,Financial,1,All applicants,Audited profit and loss account for past year
+42,8,Bank Statements,Financial,1,All applicants,Bank statements for last 12 months showing business transactions
+43,8,Expense Receipts,Financial,0,If claimed,Original receipts for claimed business expenses
+44,9,PAN Certificate,Identity,1,All applicants,Permanent Account Number certificate
+45,9,Aadhaar Card,Identity,1,All applicants,Aadhaar card or enrollment number
+46,9,Address Proof,Address,1,All applicants,Government issued address proof
+47,9,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+48,10,PF Account Statement,Financial,1,All applicants,Latest PF account balance statement
+49,10,Birth Certificate,Personal,1,All applicants,For age verification
+50,10,Bank Account Details,Financial,1,All applicants,Account statement showing bank details
+51,11,ESI Member ID,Identity,1,All applicants,ESI member identification proof
+52,11,Medical Report,Medical,1,All applicants,Medical examination report for claim
+53,11,Hospital Bills,Financial,1,For medical claims,Original medical bills and receipts
+54,11,Prescription,Medical,0,For medicine claims,Doctor's prescription if claiming medicine
+55,12,School/College ID,Education,1,All applicants,Current educational institution identity card
+56,12,Mark Sheet,Education,1,All applicants,Previous year academic performance record
+57,12,Income Certificate,Financial,1,All applicants,Family income certificate from Tahsildar
+58,12,Birth Certificate,Personal,1,All applicants,For age verification
+59,12,Caste Certificate,Legal,0,For SC/ST applicants,Caste certificate from revenue office
+60,13,Title Deed,Legal,1,All applicants,Original or certified copy of property deed
+61,13,Survey Plan,Technical,1,All applicants,Survey map showing property boundaries
+62,13,Mutation Certificate,Legal,0,If available,Previous mutation certificate
+63,13,Payment Proof,Financial,1,All applicants,Bank cheque or payment receipt
+64,13,Sale Deed,Legal,0,For recent purchase,Sale deed if recently purchased
+65,14,Mutation Application Form,Form,1,All applicants,Completed mutation application
+66,14,Previous Ownership Document,Legal,1,All applicants,Original title deed or mutation certificate
+67,14,Sale Deed,Legal,1,All applicants,Sale deed showing ownership transfer
+68,14,Payment Receipt,Financial,1,All applicants,Proof of payment to revenue department
+69,15,Identity Proof,Identity,1,All applicants,Aadhaar/PAN/Voter ID/Driving License
+70,15,Address Proof,Address,1,All applicants,Utility bill/property deed/rental agreement
+71,15,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+72,15,Vehicle Insurance,Legal,1,All applicants,Valid insurance certificate
+73,15,Emission Test Certificate,Technical,0,If applicable,Pollution Under Control certificate
+74,16,Vehicle Registration Certificate,Legal,1,All applicants,Current RC book copy
+75,16,Sale Deed,Legal,1,All applicants,Sale deed between old and new owner
+76,16,NOC Letter,Legal,1,All applicants,No objection certificate from old owner
+77,16,Photographs,Personal,1,All applicants,2x2 colored photographs of new owner
+78,17,Aadhaar Card,Identity,1,All applicants,Aadhaar card of primary applicant
+79,17,Income Certificate,Financial,1,All applicants,Income certificate for all family members
+80,17,BPL Ration Card,Legal,0,If applicable,BPL ration card copy
+81,17,Address Proof,Address,1,All applicants,Electricity/water bill or property deed
+82,17,Family Photo,Personal,1,All applicants,Family photograph
+83,18,LPG Bill,Utility,1,All applicants,Latest LPG consumer bill
+84,18,Aadhaar Card,Identity,1,All applicants,Aadhaar card or enrollment slip
+85,18,Bank Account Statement,Financial,1,All applicants,Bank statement for subsidy transfer
+86,18,Payment Proof,Financial,1,All applicants,Proof of at least one LPG purchase
+87,19,Income Certificate,Financial,1,All applicants,From Tahsildar/Village Officer
+88,19,Residential Proof,Address,1,All applicants,Electricity/water bill or property deed
+89,19,Address Proof,Address,1,All applicants,Government issued address proof
+90,19,Family Member Certificate,Personal,1,All applicants,Certificate of family members from Panchayat
+91,20,Birth Certificate,Personal,1,All applicants,Original or certified copy
+92,20,Residential Proof,Address,1,All applicants,Utility bill or property deed
+93,20,Bank Account Details,Financial,1,All applicants,For pension transfer
+94,20,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+95,21,Salary Slip,Financial,1,All applicants,Last 3-6 months salary slips
+96,21,Income Tax Return,Financial,1,All applicants,IT return for past 1-2 years
+97,21,Bank Statements,Financial,1,All applicants,Bank statements for last 6-12 months
+98,21,Identity Proof,Identity,1,All applicants,Aadhaar/PAN/Passport
+99,21,Address Proof,Address,1,All applicants,Utility bill/property deed/rental agreement
+100,22,PAN Certificate,Identity,1,All applicants,Permanent Account Number certificate
+101,22,Bank Statement,Financial,1,All applicants,Bank account statement showing PAN holder name
+102,22,Address Proof,Address,1,All applicants,Government issued address proof
+103,22,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+104,23,PAN Certificate,Identity,1,All applicants,Permanent Account Number
+105,23,Bank Statement,Financial,1,All applicants,Latest bank statement
+106,23,Address Proof,Address,1,All applicants,Utility bill or property deed
+107,23,Identity Proof,Identity,1,All applicants,Aadhaar/Passport/Voter ID
+108,24,PAN Certificate,Identity,1,All applicants,Permanent Account Number
+109,24,Address Proof,Address,1,All applicants,Utility bill/property deed
+110,24,Bank Statement,Financial,0,If applicable,For investment details
+111,25,Identity Proof,Identity,1,All applicants,Aadhaar/PAN/Passport
+112,25,Address Proof,Address,1,All applicants,Utility bill or property deed
+113,25,Bank Account Details,Financial,1,All applicants,For contribution processing
+114,25,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+115,26,Old PF Statement,Financial,1,All applicants,Latest PF account statement from old employer
+116,26,New Employer Certificate,Employment,1,All applicants,Offer letter or employment letter from new employer
+117,26,Bank Account Details,Financial,1,All applicants,Destination bank details for transfer
+118,27,Termination Letter,Employment,1,All applicants,Job termination letter from employer
+119,27,PF Account Statement,Financial,1,All applicants,Latest PF balance statement
+120,27,Bank Account Details,Financial,1,All applicants,For final payment transfer
+121,28,Medical Report,Medical,1,All applicants,Pregnancy confirmation from doctor
+122,28,ESI Member Certificate,Employment,1,All applicants,ESI membership proof
+123,28,Salary Slip,Financial,1,All applicants,Recent salary slip
+124,29,Medical Report,Medical,1,All applicants,Disability assessment from medical board
+125,29,Hospital Certificate,Medical,0,If hospitalized,From treating hospital
+126,29,Photograph,Personal,1,All applicants,Colored photograph (4x6 cm)
+127,30,Degree Certificate,Education,1,All applicants,Bachelor's degree certificate
+128,30,Mark Sheets,Education,1,All applicants,All semester/year mark sheets
+129,30,Birth Certificate,Personal,1,All applicants,For age verification
+130,30,Category Certificate,Legal,0,If applicable,For SC/ST/OBC category candidates
+131,31,Education Certificate,Education,1,All applicants,Degree or diploma certificate
+132,31,Mark Sheets,Education,1,All applicants,Class X and XII mark sheets
+133,31,Address Proof,Address,1,All applicants,Utility bill/property deed
+134,32,Valid Passport,Legal,1,All applicants,International travel document
+135,32,Employment/Education Proof,Personal,1,All applicants,Work appointment or college enrollment letter
+136,32,Financial Proof,Financial,1,All applicants,Bank statements or proof of funds
+137,32,Travel Itinerary,Personal,0,If available,Travel plans and booking confirmation
+138,33,Valid Passport,Legal,1,All applicants,International travel document
+139,33,Visa Application Form,Form,1,All applicants,Completed visa application
+140,33,Financial Proof,Financial,1,All applicants,Bank statements showing sufficient funds
+141,33,Employment/Study Proof,Personal,1,All applicants,Employment letter or college enrollment
+142,33,Travel Insurance,Travel,0,If required,Travel insurance policy copy
+143,34,Valid Passport,Legal,1,All applicants,International travel document
+144,34,Photograph,Personal,1,All applicants,Colored photograph (passport size)
+145,34,Application Form,Form,1,All applicants,Completed OCI application form
+146,34,Nationality Proof,Legal,1,All applicants,Proof of Indian origin or nationality
+147,35,Residential Proof,Address,1,All applicants,Current address from utility bill or lease
+148,35,Identity Proof,Identity,1,All applicants,Aadhaar/PAN/Voter ID
+149,35,Birth Certificate,Personal,1,All applicants,For residency verification
+150,35,Self Declaration,Personal,1,All applicants,Statutory declaration of residence

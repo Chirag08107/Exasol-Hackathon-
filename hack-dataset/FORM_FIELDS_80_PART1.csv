@@ -1,0 +1,171 @@
+field_id,form_id,field_code,field_label,field_type,section_name,is_required,field_order,explanation,example_value,validation_pattern,min_length,max_length
+1,1,ITR1_NAME,Full Name,text,Personal Information,1,1,Enter your full legal name as per PAN and Aadhaar,Rajesh Kumar Singh,^[A-Za-z\s]{1,100}$,3,100
+2,1,ITR1_PAN,Permanent Account Number,text,Personal Information,1,2,Your 10-character PAN issued by Income Tax Department,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+3,1,ITR1_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,15/06/1985,^\d{2}/\d{2}/\d{4}$,10,10
+4,1,ITR1_GENDER,Gender,dropdown,Personal Information,1,4,Select your gender,Male,NULL,NULL,NULL
+5,1,ITR1_ADDRESS,Residential Address,textarea,Personal Information,1,5,Complete address where you currently reside,123 Main Street Bangalore,NULL,10,300
+6,1,ITR1_INCOME,Total Income,number,Income Details,1,6,Total gross income for the financial year in rupees,500000,^\d+$,1,10
+7,1,ITR1_TAX_PAID,Tax Paid,number,Income Details,0,7,Total tax already paid via TDS or advance tax,25000,^\d+$,1,10
+8,1,ITR1_REFUND,Refund Due,number,Income Details,0,8,Expected refund amount (if applicable),NULL,^\d+$,1,10
+9,2,PAN_NAME,Full Name,text,Personal Information,1,1,Enter your full legal name exactly as per identity document,Priya Sharma,^[A-Za-z\s]{1,100}$,3,100
+10,2,PAN_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,22/03/1990,^\d{2}/\d{2}/\d{4}$,10,10
+11,2,PAN_FATHER,Father's Name,text,Personal Information,1,3,Enter father's full name,Vikram Sharma,^[A-Za-z\s]{1,100}$,3,100
+12,2,PAN_GENDER,Gender,dropdown,Personal Information,1,4,Select your gender,Female,NULL,NULL,NULL
+13,2,PAN_CATEGORY,Category,dropdown,Personal Information,1,5,Select applicant category (Individual/HUF/Company etc),Individual,NULL,NULL,NULL
+14,2,PAN_ADDRESS,Address,textarea,Personal Information,1,6,Residential address,456 Oak Lane Delhi,NULL,10,300
+15,2,PAN_EMAIL,Email Address,email,Contact Information,0,7,Valid email address for communication,priya.sharma@email.com,^[^\s@]+@[^\s@]+\.[^\s@]+$,5,100
+16,2,PAN_PHONE,Phone Number,phone,Contact Information,0,8,Mobile number with 10 digits,9876543210,^[0-9]{10}$,10,10
+17,3,GST_NAME,Business Name,text,Business Details,1,1,Legal name of your business entity,Tech Solutions Pvt Ltd,^[A-Za-z0-9\s]{1,100}$,3,100
+18,3,GST_TURNOVER,Business Turnover,number,Business Details,1,2,Annual business turnover in rupees,5000000,^\d+$,1,15
+19,3,GST_PAN,Business PAN,text,Business Details,1,3,PAN of business entity,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+20,3,GST_ADDRESS,Business Address,textarea,Business Details,1,4,Full address of business premises,123 Business Park Mumbai,NULL,10,300
+21,3,GST_STATE,State,dropdown,Business Details,1,5,State where business is located,Maharashtra,NULL,NULL,NULL
+22,3,GST_CATEGORY,Business Category,dropdown,Business Details,1,6,Category of business activities,Manufacturing,NULL,NULL,NULL
+23,4,AADHAAR_NAME,Full Name,text,Personal Information,1,1,Name as per identity document,Rajesh Kumar,^[A-Za-z\s]{1,100}$,3,100
+24,4,AADHAAR_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,15/06/1985,^\d{2}/\d{2}/\d{4}$,10,10
+25,4,AADHAAR_GENDER,Gender,dropdown,Personal Information,1,3,Select your gender,Male,NULL,NULL,NULL
+26,4,AADHAAR_ADDRESS,Address,textarea,Personal Information,1,4,Current residential address,123 Street Name City,NULL,10,300
+27,4,AADHAAR_STATE,State,dropdown,Personal Information,1,5,State of residence,Karnataka,NULL,NULL,NULL
+28,4,AADHAAR_MOBILE,Mobile Number,phone,Contact Information,1,6,10-digit mobile number,9876543210,^[0-9]{10}$,10,10
+29,4,AADHAAR_EMAIL,Email Address,email,Contact Information,0,7,Valid email address,rajesh.kumar@email.com,^[^\s@]+@[^\s@]+\.[^\s@]+$,5,100
+30,5,PASSPORT_NAME,Full Name,text,Personal Information,1,1,Name as per birth certificate,Priya Singh,^[A-Za-z\s]{1,100}$,3,100
+31,5,PASSPORT_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,22/03/1990,^\d{2}/\d{2}/\d{4}$,10,10
+32,5,PASSPORT_FATHER,Father's Name,text,Personal Information,1,3,Father's full name,Suresh Singh,^[A-Za-z\s]{1,100}$,3,100
+33,5,PASSPORT_MOTHER,Mother's Name,text,Personal Information,1,4,Mother's full name,Meera Singh,^[A-Za-z\s]{1,100}$,3,100
+34,5,PASSPORT_ADDRESS,Residential Address,textarea,Personal Information,1,5,Permanent address,789 Garden View Bangalore,NULL,10,300
+35,5,PASSPORT_PHONE,Phone Number,phone,Contact Information,1,6,Mobile number for contact,9876543210,^[0-9]{10}$,10,10
+36,5,PASSPORT_EMAIL,Email Address,email,Contact Information,1,7,Email for communication,priya.singh@email.com,^[^\s@]+@[^\s@]+\.[^\s@]+$,5,100
+37,5,PASSPORT_PURPOSE,Purpose of Travel,dropdown,Travel Details,1,8,Reason for passport application,Tourism,NULL,NULL,NULL
+38,6,DL_NAME,Full Name,text,Personal Information,1,1,Name as per driving license application,Amit Patel,^[A-Za-z\s]{1,100}$,3,100
+39,6,DL_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,10/05/1988,^\d{2}/\d{2}/\d{4}$,10,10
+40,6,DL_ADDRESS,Address,textarea,Personal Information,1,3,Current residential address,321 Plaza Road Pune,NULL,10,300
+41,6,DL_LICENSE_TYPE,License Type,dropdown,License Details,1,4,Type of driving license required,Light Motor Vehicle,NULL,NULL,NULL
+42,6,DL_VEHICLE_CLASS,Vehicle Class,dropdown,License Details,1,5,Class of vehicle you will operate,Two Wheeler,NULL,NULL,NULL
+43,6,DL_MOBILE,Mobile Number,phone,Contact Information,1,6,10-digit mobile number,8765432109,^[0-9]{10}$,10,10
+44,7,VOTER_NAME,Full Name,text,Personal Information,1,1,Name as per identity document,Neha Desai,^[A-Za-z\s]{1,100}$,3,100
+45,7,VOTER_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,30/07/1992,^\d{2}/\d{2}/\d{4}$,10,10
+46,7,VOTER_ADDRESS,Address,textarea,Personal Information,1,3,Residential address for voting,654 Maple Court Ahmedabad,NULL,10,300
+47,7,VOTER_STATE,State,dropdown,Personal Information,1,4,State where you reside,Gujarat,NULL,NULL,NULL
+48,7,VOTER_DISTRICT,District,dropdown,Personal Information,1,5,District of residence,Ahmedabad,NULL,NULL,NULL
+49,7,VOTER_MOBILE,Mobile Number,phone,Contact Information,1,6,Contact mobile number,7654321098,^[0-9]{10}$,10,10
+50,8,BANK_NAME,Full Name,text,Personal Information,1,1,Name as per identity document,Sanjay Verma,^[A-Za-z\s]{1,100}$,3,100
+51,8,BANK_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,05/02/1987,^\d{2}/\d{2}/\d{4}$,10,10
+52,8,BANK_FATHER,Father's Name,text,Personal Information,1,3,Father's full name,Ramesh Verma,^[A-Za-z\s]{1,100}$,3,100
+53,8,BANK_GENDER,Gender,dropdown,Personal Information,1,4,Select your gender,Male,NULL,NULL,NULL
+54,8,BANK_ADDRESS,Residential Address,textarea,Personal Information,1,5,Current residential address,987 Pine Ridge Jaipur,NULL,10,300
+55,8,BANK_OCCUPATION,Occupation,dropdown,Employment,1,6,Your current occupation,Service,NULL,NULL,NULL
+56,8,BANK_INCOME,Monthly Income,number,Employment,0,7,Approximate monthly income in rupees,50000,^\d+$,1,10
+57,8,BANK_ACCOUNT_TYPE,Account Type,dropdown,Account Details,1,8,Type of account to open,Savings,NULL,NULL,NULL
+58,8,BANK_MOBILE,Mobile Number,phone,Contact Information,1,9,10-digit mobile number,6543210987,^[0-9]{10}$,10,10
+59,8,BANK_EMAIL,Email Address,email,Contact Information,0,10,Email for bank communication,sanjay.verma@email.com,^[^\s@]+@[^\s@]+\.[^\s@]+$,5,100
+60,9,KYC_PAN,PAN Number,text,Identification,1,1,Permanent Account Number,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+61,9,KYC_AADHAAR,Aadhaar Number,text,Identification,1,2,12-digit Aadhaar number,123456789012,^[0-9]{12}$,12,12
+62,9,KYC_ADDRESS,Address,textarea,Identification,1,3,Current residential address,123 Home Street City,NULL,10,300
+63,9,KYC_MOBILE,Mobile Number,phone,Contact Information,1,4,10-digit mobile number,9876543210,^[0-9]{10}$,10,10
+64,10,EPFO_PF_NUMBER,PF Account Number,text,Account Details,1,1,Your EPF account number,ABC/1234567/00012345,NULL,15,30
+65,10,EPFO_NAME,Full Name,text,Personal Information,1,2,Name as per PF records,Deepak Sharma,^[A-Za-z\s]{1,100}$,3,100
+66,10,EPFO_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,12/08/1990,^\d{2}/\d{2}/\d{4}$,10,10
+67,10,EPFO_CLAIM_REASON,Claim Reason,dropdown,Claim Details,1,4,Reason for PF withdrawal claim,Retirement,NULL,NULL,NULL
+68,10,EPFO_AMOUNT,Claim Amount,number,Claim Details,1,5,Amount requested in rupees,500000,^\d+$,1,12
+69,10,EPFO_BANK,Bank Account Number,text,Bank Details,1,6,Destination bank account number,1234567890123456,^[0-9]{16}$,16,16
+70,11,ESI_CLAIM_NUMBER,ESI Claim Number,text,Claim Information,1,1,Your unique ESI claim reference number,12345678,^[0-9]{8}$,8,8
+71,11,ESI_NAME,Full Name,text,Personal Information,1,2,Name as per ESI records,Vinay Kumar,^[A-Za-z\s]{1,100}$,3,100
+72,11,ESI_CLAIM_TYPE,Claim Type,dropdown,Claim Details,1,3,Type of ESI benefit claim,Medical,NULL,NULL,NULL
+73,11,ESI_HOSPITAL,Hospital Name,text,Claim Details,0,4,Name of hospital/clinic,City Medical Center,^[A-Za-z0-9\s]{1,100}$,3,100
+74,11,ESI_AMOUNT,Claim Amount,number,Claim Details,1,5,Amount claimed in rupees,25000,^\d+$,1,10
+75,12,SCHOLARSHIP_NAME,Full Name,text,Personal Information,1,1,Name as per class 10 certificate,Shreya Patel,^[A-Za-z\s]{1,100}$,3,100
+76,12,SCHOLARSHIP_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,18/04/2005,^\d{2}/\d{2}/\d{4}$,10,10
+77,12,SCHOLARSHIP_CLASS,Class/Grade,dropdown,Education Details,1,3,Current class or grade level,11th,NULL,NULL,NULL
+78,12,SCHOLARSHIP_SCHOOL,School/College Name,text,Education Details,1,4,Name of your educational institution,Central High School,^[A-Za-z0-9\s]{1,100}$,3,100
+79,12,SCHOLARSHIP_MARKS,Previous Marks,number,Education Details,1,5,Percentage marks obtained,92,^\d{1,3}$,1,3
+80,12,SCHOLARSHIP_FAMILY_INCOME,Family Income,number,Financial Details,1,6,Annual family income in rupees,300000,^\d+$,1,10
+81,13,PROPERTY_ADDRESS,Property Address,textarea,Property Details,1,1,Complete address of the property,123 Property Lane Town,NULL,10,300
+82,13,PROPERTY_TYPE,Property Type,dropdown,Property Details,1,2,Type of property (Residential/Commercial/Agricultural),Residential,NULL,NULL,NULL
+83,13,PROPERTY_OWNER,Owner Name,text,Property Details,1,3,Full name of property owner,Mohan Reddy,^[A-Za-z\s]{1,100}$,3,100
+84,13,PROPERTY_AREA,Property Area,number,Property Details,1,4,Total area in square feet,2000,^\d+$,1,10
+85,13,PROPERTY_VALUE,Property Value,number,Financial Details,1,5,Market value of property in rupees,5000000,^\d+$,1,15
+86,13,PROPERTY_SURVEY,Survey Number,text,Property Details,1,6,Government survey number of property,123/45/67,NULL,5,20
+87,14,MUTATION_ADDRESS,Property Address,textarea,Property Details,1,1,Complete address of the property for mutation,456 Mutation Road District,NULL,10,300
+88,14,MUTATION_OLD_OWNER,Old Owner Name,text,Previous Owner,1,2,Name of previous property owner,Raghav Singh,^[A-Za-z\s]{1,100}$,3,100
+89,14,MUTATION_NEW_OWNER,New Owner Name,text,New Owner,1,3,Name of new property owner,Anita Singh,^[A-Za-z\s]{1,100}$,3,100
+90,14,MUTATION_REASON,Reason for Mutation,dropdown,Mutation Details,1,4,Reason for ownership change,Purchase/Sale,NULL,NULL,NULL
+91,14,MUTATION_VALUE,Property Value,number,Financial Details,1,5,Transaction value in rupees,2500000,^\d+$,1,12
+92,15,VEHICLE_OWNER_NAME,Vehicle Owner Name,text,Owner Details,1,1,Full name of vehicle owner,Arjun Kapoor,^[A-Za-z\s]{1,100}$,3,100
+93,15,VEHICLE_ADDRESS,Address,textarea,Owner Details,1,2,Residential address of owner,789 Auto Street State,NULL,10,300
+94,15,VEHICLE_TYPE,Vehicle Type,dropdown,Vehicle Details,1,3,Type of vehicle (Two-wheeler/Four-wheeler),Two-wheeler,NULL,NULL,NULL
+95,15,VEHICLE_MODEL,Vehicle Model,text,Vehicle Details,1,4,Make and model of vehicle,Honda CB500,^[A-Za-z0-9\s]{1,50}$,3,50
+96,15,VEHICLE_ENGINE,Engine Number,text,Vehicle Details,1,5,Engine number from vehicle,ENG123456789,^[A-Za-z0-9]{12,20}$,12,20
+97,15,VEHICLE_CHASSIS,Chassis Number,text,Vehicle Details,1,6,Chassis/VIN number of vehicle,CHASSIS123456789,^[A-Z0-9]{17}$,17,17
+98,16,TRANSFER_REGN_NUMBER,Current Registration Number,text,Transfer Details,1,1,Current vehicle registration number,DL-01-AB-1234,^[A-Z]{2}-[0-9]{2}-[A-Z]{2}-[0-9]{4}$,12,12
+99,16,TRANSFER_FROM,Transfer From,text,Transfer Details,1,2,Name of current owner,Ravi Kumar,^[A-Za-z\s]{1,100}$,3,100
+100,16,TRANSFER_TO,Transfer To,text,Transfer Details,1,3,Name of new owner,Sunita Sharma,^[A-Za-z\s]{1,100}$,3,100
+101,16,TRANSFER_DATE,Date of Transfer,date,Transfer Details,1,4,Date of ownership transfer in DD/MM/YYYY,15/01/2024,^\d{2}/\d{2}/\d{4}$,10,10
+102,17,AYUSHMAN_NAME,Full Name,text,Personal Information,1,1,Name of primary family member,Ramesh Kumar,^[A-Za-z\s]{1,100}$,3,100
+103,17,AYUSHMAN_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,20/11/1975,^\d{2}/\d{2}/\d{4}$,10,10
+104,17,AYUSHMAN_GENDER,Gender,dropdown,Personal Information,1,3,Gender of applicant,Male,NULL,NULL,NULL
+105,17,AYUSHMAN_FAMILY_SIZE,Family Size,number,Family Details,1,4,Number of family members for coverage,4,^[1-9]$,1,1
+106,17,AYUSHMAN_INCOME,Annual Income,number,Financial Details,1,5,Total annual family income in rupees,120000,^\d+$,1,10
+107,17,AYUSHMAN_ADDRESS,Address,textarea,Personal Information,1,6,Residential address,321 Health Street City,NULL,10,300
+108,18,LPG_NAME,Full Name,text,Personal Information,1,1,Name on LPG connection,Priya Desai,^[A-Za-z\s]{1,100}$,3,100
+109,18,LPG_CONNECTION_ID,LPG Connection ID,text,Connection Details,1,2,Existing LPG connection number,7364829174963,^[0-9]{13}$,13,13
+110,18,LPG_MOBILE,Mobile Number,phone,Contact Information,1,3,Mobile number linked to connection,9987654321,^[0-9]{10}$,10,10
+111,18,LPG_AADHAAR,Aadhaar Number,text,Identification,1,4,Aadhaar number for PAHAL registration,987654321098,^[0-9]{12}$,12,12
+112,18,LPG_BANK,Bank Account,text,Financial Details,1,5,Bank account for subsidy transfer,1234567890123456,^[0-9]{16}$,16,16
+113,19,RATION_NAME,Full Name,text,Personal Information,1,1,Name of ration card applicant,Harish Verma,^[A-Za-z\s]{1,100}$,3,100
+114,19,RATION_ADDRESS,Address,textarea,Personal Information,1,2,Residential address for ration card,654 Grain Lane District,NULL,10,300
+115,19,RATION_FAMILY_SIZE,Family Members,number,Family Details,1,3,Number of family members,5,^[1-9]$,1,1
+116,19,RATION_CATEGORY,Category,dropdown,Eligibility,1,4,Ration card category (BPL/APL/AAY),BPL,NULL,NULL,NULL
+117,19,RATION_INCOME,Annual Income,number,Financial Details,1,5,Total annual family income in rupees,60000,^\d+$,1,8
+118,20,PENSION_NAME,Full Name,text,Personal Information,1,1,Name of pension applicant,Savitri Devi,^[A-Za-z\s]{1,100}$,3,100
+119,20,PENSION_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,10/05/1960,^\d{2}/\d{2}/\d{4}$,10,10
+120,20,PENSION_AGE,Age,number,Personal Information,0,3,Current age in years,64,^[0-9]{2}$,2,3
+121,20,PENSION_ADDRESS,Address,textarea,Personal Information,1,4,Residential address,987 Senior Court City,NULL,10,300
+122,20,PENSION_BANK,Bank Account,text,Financial Details,1,5,Bank account for pension transfer,9876543210123456,^[0-9]{16}$,16,16
+123,21,LOAN_NAME,Full Name,text,Personal Information,1,1,Name of loan applicant,Vikram Sinha,^[A-Za-z\s]{1,100}$,3,100
+124,21,LOAN_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,08/09/1980,^\d{2}/\d{2}/\d{4}$,10,10
+125,21,LOAN_OCCUPATION,Occupation,dropdown,Employment Details,1,3,Current occupation,Service,NULL,NULL,NULL
+126,21,LOAN_INCOME,Monthly Income,number,Employment Details,1,4,Monthly income from all sources,75000,^\d+$,1,10
+127,21,LOAN_AMOUNT,Loan Amount,number,Loan Details,1,5,Amount of loan required in rupees,500000,^\d+$,1,10
+128,21,LOAN_TENURE,Tenure,number,Loan Details,1,6,Duration of loan in months,60,^[0-9]{2,3}$,2,3
+129,22,DEMAT_PAN,PAN Number,text,Identification,1,1,Permanent Account Number,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+130,22,DEMAT_NAME,Full Name,text,Personal Information,1,2,Name as per PAN,Neha Gupta,^[A-Za-z\s]{1,100}$,3,100
+131,22,DEMAT_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,25/12/1985,^\d{2}/\d{2}/\d{4}$,10,10
+132,22,DEMAT_BANK,Bank Account,text,Bank Details,1,4,Linked bank account number,1234567890123456,^[0-9]{16}$,16,16
+133,22,DEMAT_MOBILE,Mobile Number,phone,Contact Information,1,5,Mobile number for communication,8765432109,^[0-9]{10}$,10,10
+134,23,TRADING_PAN,PAN Number,text,Identification,1,1,Permanent Account Number,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+135,23,TRADING_NAME,Full Name,text,Personal Information,1,2,Name as per identity document,Rahul Nair,^[A-Za-z\s]{1,100}$,3,100
+136,23,TRADING_OCCUPATION,Occupation,dropdown,Employment Details,1,3,Current occupation,Professional,NULL,NULL,NULL
+137,23,TRADING_EXPERIENCE,Experience,number,Investment Details,1,4,Years of stock market experience,3,^[0-9]{1,2}$,1,2
+138,23,TRADING_BANK,Bank Account,text,Bank Details,1,5,Linked bank account number,9876543210123456,^[0-9]{16}$,16,16
+139,24,MF_PAN,PAN Number,text,Identification,1,1,Permanent Account Number,ABCDE1234F,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,10,10
+140,24,MF_INVESTOR_NAME,Investor Name,text,Personal Information,1,2,Full name of investor,Anjali Verma,^[A-Za-z\s]{1,100}$,3,100
+141,24,MF_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,30/06/1988,^\d{2}/\d{2}/\d{4}$,10,10
+142,24,MF_INVESTMENT_AMOUNT,Investment Amount,number,Investment Details,1,4,Amount to invest in rupees,100000,^\d+$,1,10
+143,24,MF_SCHEME,Scheme Name,dropdown,Investment Details,1,5,Name of mutual fund scheme,Balanced Fund,NULL,NULL,NULL
+144,25,NPS_TIER,NPS Tier,dropdown,Account Details,1,1,NPS account tier (Tier I/Tier II),Tier I,NULL,NULL,NULL
+145,25,NPS_NAME,Full Name,text,Personal Information,1,2,Name as per identity document,Anand Kumar,^[A-Za-z\s]{1,100}$,3,100
+146,25,NPS_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,15/03/1985,^\d{2}/\d{2}/\d{4}$,10,10
+147,25,NPS_INITIAL_CONTRIBUTION,Initial Contribution,number,Financial Details,1,4,Initial NPS contribution amount in rupees,50000,^\d+$,1,10
+148,25,NPS_BANK,Bank Account,text,Bank Details,1,5,Linked bank account for contribution,5432109876543210,^[0-9]{16}$,16,16
+149,26,PF_OLD_EMPLOYER,Old Employer Name,text,Employer Details,1,1,Name of previous employer,ABC Tech Solutions,^[A-Za-z0-9\s]{1,100}$,3,100
+150,26,PF_NEW_EMPLOYER,New Employer Name,text,Employer Details,1,2,Name of current employer,XYZ Technologies,^[A-Za-z0-9\s]{1,100}$,3,100
+151,26,PF_MEMBER_ID,PF Member ID,text,Account Details,1,3,PF member identification number,ABC/1234567/00001234,NULL,15,30
+152,26,PF_ACCOUNT_NUMBER,Account Number,text,Account Details,1,4,Complete PF account number,ABC/1234567/00001234,NULL,15,30
+153,27,SETTLEMENT_MEMBER_ID,Member ID,text,Account Details,1,1,PF member identification number,ABC/1234567/00001234,NULL,15,30
+154,27,SETTLEMENT_NAME,Full Name,text,Personal Information,1,2,Name as per PF records,Mahesh Singh,^[A-Za-z\s]{1,100}$,3,100
+155,27,SETTLEMENT_REASON,Reason for Settlement,dropdown,Claim Details,1,3,Reason for final settlement,Job Termination,NULL,NULL,NULL
+156,27,SETTLEMENT_DATE,Date of Termination,date,Employment Details,1,4,Job termination date in DD/MM/YYYY,31/12/2023,^\d{2}/\d{2}/\d{4}$,10,10
+157,28,MATERNITY_MEMBER_ID,Member ID,text,Account Details,1,1,ESI member identification number,12345678,^[0-9]{8}$,8,8
+158,28,MATERNITY_NAME,Full Name,text,Personal Information,1,2,Name as per ESI records,Divya Sharma,^[A-Za-z\s]{1,100}$,3,100
+159,28,MATERNITY_DOB,Date of Birth,date,Personal Information,1,3,Date of birth in DD/MM/YYYY format,10/07/1992,^\d{2}/\d{2}/\d{4}$,10,10
+160,28,MATERNITY_DUE_DATE,Expected Delivery Date,date,Pregnancy Details,1,4,Expected date of delivery in DD/MM/YYYY,15/03/2024,^\d{2}/\d{2}/\d{4}$,10,10
+161,29,DISABILITY_NAME,Full Name,text,Personal Information,1,1,Name of disabled person,Ajay Kumar,^[A-Za-z\s]{1,100}$,3,100
+162,29,DISABILITY_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,12/05/1980,^\d{2}/\d{2}/\d{4}$,10,10
+163,29,DISABILITY_TYPE,Type of Disability,dropdown,Medical Details,1,3,Category of disability,Physical,NULL,NULL,NULL
+164,29,DISABILITY_PERCENTAGE,Disability Percentage,number,Medical Details,1,4,Percentage of disability (0-100),75,^[0-9]{1,3}$,1,3
+165,29,DISABILITY_ADDRESS,Address,textarea,Personal Information,1,5,Residential address,123 Care Street Hospital,NULL,10,300
+166,30,JOB_UPSC_NAME,Full Name,text,Personal Information,1,1,Name as per class 10 certificate,Sudhir Rao,^[A-Za-z\s]{1,100}$,3,100
+167,30,JOB_UPSC_DOB,Date of Birth,date,Personal Information,1,2,Date of birth in DD/MM/YYYY format,08/11/1995,^\d{2}/\d{2}/\d{4}$,10,10
+168,30,JOB_UPSC_EDUCATION,Educational Qualification,dropdown,Education Details,1,3,Highest educational qualification,Graduation,NULL,NULL,NULL
+169,30,JOB_UPSC_CATEGORY,Category,dropdown,Eligibility,1,4,SC/ST/OBC/General,General,NULL,NULL,NULL
+170,30,JOB_UPSC_STATE,State of Origin,dropdown,Personal Information,1,5,State of residence,Tamil Nadu,NULL,NULL,NULL
