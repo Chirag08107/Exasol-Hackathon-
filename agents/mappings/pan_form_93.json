@@ -1,0 +1,196 @@
+{
+  "template": "agents/demo/sample_form.pdf",
+  "form_code": "93",
+  "page_count": 5,
+  "page_width": 595.276,
+  "page_height": 841.89,
+  "coordinate_origin": "top-left",
+  "font": "Courier",
+  "default_font_size": 9.5,
+
+  "_notes": [
+    "Coordinates were measured directly from the vector line-drawing geometry of agents/demo/sample_form.pdf (page 1, 'FORM NO. 93') using PyMuPDF, not eyeballed from a screenshot.",
+    "Origin is top-left with y increasing downward, matching how the boxes were measured; pdf_filler.py converts to PDF's bottom-left origin at draw time.",
+    "Every text field on this form uses the same 24-box character-row grid (x_start=180.6, box_width=15.35pt) except Aadhaar (12 boxes), DOB (grouped 2/2/4), and the phone number (grouped 3/10). Email has no boxes on the template, so it is drawn as plain text.",
+    "PAN_ADDRESS is a single free-text canonical answer, expected as three comma-separated parts (Flat/Building, Street/Area, Locality/City — see FORM_KB.FORM_FIELD.explanation for field_id 14). Each part is placed in its own boxed row via 'csv_part' extraction. Post Office and District rows have no corresponding canonical field and are left blank.",
+    "'B. Name (as per Aadhaar)' reuses PAN_NAME (same value as Part A) since the applicant's name doesn't change between the two — there is no separate canonical field for it."
+  ],
+
+  "fields": [
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "first" },
+      "row": { "y_top": 196.0, "y_bottom": 206.0, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "middle" },
+      "row": { "y_top": 209.4, "y_bottom": 219.0, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "last" },
+      "row": { "y_top": 223.1, "y_bottom": 232.7, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_DOB", "type": "grouped_char_boxes", "page": 0,
+      "extract": { "kind": "digits" },
+      "group_y_top": 306.5, "group_y_bottom": 318.0,
+      "groups": [
+        { "count": 2, "x_start": 180.8, "box_width": 15.45 },
+        { "count": 2, "x_start": 226.6, "box_width": 16.15 },
+        { "count": 4, "x_start": 272.7, "box_width": 14.9 }
+      ] },
+
+    { "canonical_field": "PAN_GENDER", "type": "checkbox", "page": 0,
+      "options": [
+        { "matches": ["male", "m"], "x": 183.1, "x_right": 193.9, "y_top": 294.8, "y_bottom": 303.0,
+          "cover": { "x0": 183.1, "y0": 294.8, "x1": 193.9, "y1": 303.0 } },
+        { "matches": ["female", "f"], "x": 229.3, "x_right": 240.0, "y_top": 294.8, "y_bottom": 303.0,
+          "cover": { "x0": 229.3, "y0": 294.8, "x1": 240.0, "y1": 303.0 } },
+        { "matches": ["transgender", "other", "t"], "x": 290.4, "x_right": 301.1, "y_top": 294.8, "y_bottom": 303.0,
+          "cover": { "x0": 290.4, "y0": 294.8, "x1": 301.1, "y1": 303.0 } }
+      ] },
+
+    { "canonical_field": "PAN_RESIDENTIAL_STATUS", "type": "checkbox", "page": 0,
+      "options": [
+        { "matches": ["resident"], "x": 212.9, "x_right": 223.7, "y_top": 533.6, "y_bottom": 541.8,
+          "cover": { "x0": 212.9, "y0": 533.6, "x1": 223.7, "y1": 541.8 } },
+        { "matches": ["non resident", "non-resident", "nri"], "x": 275.0, "x_right": 285.8, "y_top": 533.6, "y_bottom": 541.8,
+          "cover": { "x0": 275.0, "y0": 533.6, "x1": 285.8, "y1": 541.8 } },
+        { "matches": ["resident but not ordinarily resident", "rnor"], "x": 352.2, "x_right": 363.0, "y_top": 533.6, "y_bottom": 541.8,
+          "cover": { "x0": 352.2, "y0": 533.6, "x1": 363.0, "y1": 541.8 } }
+      ] },
+
+    { "canonical_field": "PAN_ADDRESS", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "csv_part", "part_index": 0 },
+      "row": { "y_top": 351.5, "y_bottom": 361.0, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_ADDRESS", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "csv_part", "part_index": 1 },
+      "row": { "y_top": 364.9, "y_bottom": 374.4, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_ADDRESS", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "csv_part", "part_index": 2 },
+      "row": { "y_top": 391.7, "y_bottom": 401.2, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "first" },
+      "row": { "y_top": 252.9, "y_bottom": 264.4, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "middle" },
+      "row": { "y_top": 266.3, "y_bottom": 277.8, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_NAME", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "last" },
+      "row": { "y_top": 279.7, "y_bottom": 291.2, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_EMAIL", "type": "text", "page": 0,
+      "x": 240.0, "y_baseline": 625.5, "font_size": 8.5 },
+
+    { "canonical_field": "PAN_ADDRESS", "type": "text", "page": 0,
+      "extract": { "kind": "static", "value": "India" },
+      "x": 293.0, "y_baseline": 427.0, "font_size": 8.5 },
+
+    { "canonical_field": "PAN_PHONE", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "phone_country_code", "default_country_code": "091" },
+      "row": { "y_top": 603.4, "y_bottom": 612.9, "x_start": 240.3, "box_width": 14.8, "max_chars": 3 } },
+
+    { "canonical_field": "PAN_PHONE", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "phone_local_number" },
+      "row": { "y_top": 603.4, "y_bottom": 612.9, "x_start": 377.2, "box_width": 14.75, "max_chars": 10 } },
+
+    { "canonical_field": "PAN_FATHER", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "first" },
+      "row": { "y_top": 739.9, "y_bottom": 749.9, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_FATHER", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "middle" },
+      "row": { "y_top": 753.4, "y_bottom": 763.0, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_FATHER", "type": "char_boxes", "page": 0,
+      "extract": { "kind": "name_part", "part": "last" },
+      "row": { "y_top": 766.8, "y_bottom": 776.4, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_SINGLE_PARENT", "type": "checkbox", "page": 0,
+      "options": [
+        { "matches": ["yes"], "x": 242.7, "x_right": 253.5, "y_top": 725.8, "y_bottom": 734.0,
+          "cover": { "x0": 242.7, "y0": 725.8, "x1": 253.5, "y1": 734.0 } },
+        { "matches": ["no"], "x": 304.2, "x_right": 315.0, "y_top": 725.8, "y_bottom": 734.0,
+          "cover": { "x0": 304.2, "y0": 725.8, "x1": 315.0, "y1": 734.0 } }
+      ] },
+
+    { "canonical_field": "PAN_MOTHER", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "first" },
+      "row": { "y_top": 22.8, "y_bottom": 32.8, "x_start": 179.7, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_MOTHER", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "middle" },
+      "row": { "y_top": 36.3, "y_bottom": 45.8, "x_start": 179.7, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_MOTHER", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "last" },
+      "row": { "y_top": 49.7, "y_bottom": 59.2, "x_start": 179.7, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_REPRESENTATIVE_NAME", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "first" },
+      "row": { "y_top": 164.5, "y_bottom": 174.5, "x_start": 177.6, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_REPRESENTATIVE_NAME", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "middle" },
+      "row": { "y_top": 178.0, "y_bottom": 187.6, "x_start": 177.6, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_REPRESENTATIVE_NAME", "type": "char_boxes", "page": 1,
+      "extract": { "kind": "name_part", "part": "last" },
+      "row": { "y_top": 191.5, "y_bottom": 201.0, "x_start": 177.6, "box_width": 15.34, "max_chars": 24 } },
+
+    { "canonical_field": "PAN_STATE", "type": "text", "page": 0,
+      "x": 136.0, "y_baseline": 427.0, "font_size": 8.5 },
+
+    { "canonical_field": "PAN_PIN", "type": "grouped_char_boxes", "page": 0,
+      "extract": { "kind": "digits" },
+      "group_y_top": 418.5, "group_y_bottom": 428.1,
+      "groups": [
+        { "count": 6, "x_start": 457.3, "box_width": 15.35 }
+      ] },
+
+    { "canonical_field": "PAN_OFFICE_ADDRESS", "type": "multiline_char_boxes", "page": 0,
+      "extract": { "kind": "raw" },
+      "rows": [
+        { "y_top": 449.0, "y_bottom": 458.6, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 },
+        { "y_top": 462.4, "y_bottom": 472.0, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 },
+        { "y_top": 475.8, "y_bottom": 485.4, "x_start": 180.6, "box_width": 15.35, "max_chars": 24 }
+      ] },
+
+    { "canonical_field": "PAN_SOURCE_INCOME", "type": "checkbox", "page": 0,
+      "options": [
+        { "matches": ["salary"], "x": 181.4, "x_right": 192.2, "y_top": 670.6, "y_bottom": 678.8,
+          "cover": { "x0": 181.4, "y0": 670.6, "x1": 192.2, "y1": 678.8 } },
+        { "matches": ["business", "profession"], "x": 258.3, "x_right": 269.1, "y_top": 670.6, "y_bottom": 678.8,
+          "cover": { "x0": 258.3, "y0": 670.6, "x1": 269.1, "y1": 678.8 } },
+        { "matches": ["house property"], "x": 396.7, "x_right": 407.5, "y_top": 670.6, "y_bottom": 678.8,
+          "cover": { "x0": 396.7, "y0": 670.6, "x1": 407.5, "y1": 678.8 } },
+        { "matches": ["capital gains"], "x": 181.4, "x_right": 192.2, "y_top": 686.9, "y_bottom": 695.1,
+          "cover": { "x0": 181.4, "y0": 686.9, "x1": 192.2, "y1": 695.1 } },
+        { "matches": ["other sources"], "x": 258.4, "x_right": 269.2, "y_top": 686.9, "y_bottom": 695.1,
+          "cover": { "x0": 258.4, "y0": 686.9, "x1": 269.2, "y1": 695.1 } },
+        { "matches": ["no income"], "x": 397.3, "x_right": 408.0, "y_top": 686.9, "y_bottom": 695.1,
+          "cover": { "x0": 397.3, "y0": 686.9, "x1": 408.0, "y1": 695.1 } }
+      ] },
+
+    { "canonical_field": "PAN_PRINT_PARENT", "type": "checkbox", "page": 1,
+      "options": [
+        { "matches": ["father"], "x": 335.6, "x_right": 346.4, "y_top": 67.2, "y_bottom": 75.4,
+          "cover": { "x0": 335.6, "y0": 67.2, "x1": 346.4, "y1": 75.4 } },
+        { "matches": ["mother"], "x": 397.0, "x_right": 407.8, "y_top": 67.2, "y_bottom": 75.4,
+          "cover": { "x0": 397.0, "y0": 67.2, "x1": 407.8, "y1": 75.4 } }
+      ] },
+
+    { "canonical_field": "PAN_PROOF_DOCS", "type": "multi_checkbox", "page": 1,
+      "options": [
+        { "matches": ["identity"], "x": 70.5, "x_right": 81.3, "y_top": 474.3, "y_bottom": 482.5,
+          "cover": { "x0": 70.5, "y0": 474.3, "x1": 81.3, "y1": 482.5 } },
+        { "matches": ["address"], "x": 169.1, "x_right": 179.9, "y_top": 474.3, "y_bottom": 482.5,
+          "cover": { "x0": 169.1, "y0": 474.3, "x1": 179.9, "y1": 482.5 } },
+        { "matches": ["dob", "date of birth"], "x": 270.0, "x_right": 280.8, "y_top": 474.3, "y_bottom": 482.5,
+          "cover": { "x0": 270.0, "y0": 474.3, "x1": 280.8, "y1": 482.5 } }
+      ] }
+  ]
+}

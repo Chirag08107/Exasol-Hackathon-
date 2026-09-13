@@ -6,3 +6,9 @@ pyjwt
 pwdlib[argon2]
 google-auth
 requests
+
+# Needed for the PDF-generation stage (backend/services/pdf_service.py
+# imports the agents.filler package, which lives outside backend/).
+pydantic[email]
+pypdf
+reportlab

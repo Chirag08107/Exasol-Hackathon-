@@ -9,3 +9,10 @@ class UserResponse(BaseModel):
     userName: str
     email: EmailStr
     verified: bool
+
+
+class UpdateProfileRequest(BaseModel):
+    firstName: str
+    middleName: str | None = None
+    lastName: str
+    address: str | None = None

@@ -367,12 +367,35 @@ def search_forms(query: str):
     if not query:
         return []
 
+    # Match each word of the query independently (all must be present
+    # somewhere across the searchable columns) instead of requiring the
+    # whole phrase to appear verbatim — otherwise a query like
+    # "PAN form" never matches "PAN Card Application - Form 93", since
+    # "pan" and "form" aren't adjacent in that text.
+    words = query.split()
+
+    per_word_clause = """(
+        LOWER(form_name) LIKE LOWER({q})
+        OR LOWER(form_code) LIKE LOWER({q})
+        OR LOWER(category) LIKE LOWER({q})
+        OR LOWER(sub_category) LIKE LOWER({q})
+        OR LOWER(description) LIKE LOWER({q})
+        OR LOWER(authority) LIKE LOWER({q})
+    )"""
+
+    where_clause = " AND ".join(
+        per_word_clause.replace("{q}", f"{{q{i}}}")
+        for i in range(len(words))
+    )
+
+    params = {f"q{i}": f"%{word}%" for i, word in enumerate(words)}
+
     connection = get_connection()
 
     try:
 
         result = connection.execute(
-            """
+            f"""
             SELECT
                 form_id,
                 form_code,
@@ -388,18 +411,10 @@ def search_forms(query: str):
                 status,
                 last_verified_date
             FROM FORM_KB.FORM
-            WHERE
-                LOWER(form_name) LIKE LOWER({query})
-                OR LOWER(form_code) LIKE LOWER({query})
-                OR LOWER(category) LIKE LOWER({query})
-                OR LOWER(sub_category) LIKE LOWER({query})
-                OR LOWER(description) LIKE LOWER({query})
-                OR LOWER(authority) LIKE LOWER({query})
+            WHERE {where_clause}
             ORDER BY form_name
             """,
-            {
-                "query": f"%{query}%"
-            }
+            params
         ).fetchall()
 
         forms = []

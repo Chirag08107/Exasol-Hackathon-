@@ -399,6 +399,39 @@ const verifyOtp = async (phone, otp) => {
     return data;
   };
 
+  const updateProfile = async (form) => {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      throw new Error("Please login again.");
+    }
+
+    const response = await fetch(
+      `${API_URL}/api/users/me`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(form),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(getErrorMessage(data, "Failed to update profile"));
+    }
+
+    const normalizedUser = normalizeUser({ ...user, ...data.user });
+
+    localStorage.setItem("user", JSON.stringify(normalizedUser));
+    setUser(normalizedUser);
+
+    return normalizedUser;
+  };
+
   const logout = () => {
     localStorage.removeItem(
       "access_token"
@@ -422,6 +455,7 @@ const verifyOtp = async (phone, otp) => {
         resendOtp,
         verifyOtp,
         verify,
+        updateProfile,
         logout,
       }}
     >

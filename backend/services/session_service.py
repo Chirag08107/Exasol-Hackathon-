@@ -17,8 +17,33 @@ def get_profile_value(field, user):
         "entity"
     ]
 
+    # Someone else's name (father, mother, guardian, spouse, nominee,
+    # representative, witness...) must never be auto-filled from the
+    # logged-in user's own profile — that would silently put the
+    # applicant's own name into e.g. "Father's Name". These must
+    # always be asked of the user directly.
+    other_person_words = [
+        "father",
+        "mother",
+        "guardian",
+        "spouse",
+        "husband",
+        "wife",
+        "nominee",
+        "representative",
+        "witness",
+        "referee",
+        "parent",
+        "assessee"
+    ]
+
     if "name" in code or "name" in label:
         if any(word in label for word in business_words):
+            return None
+
+        if any(word in code.lower() for word in other_person_words) or any(
+            word in label for word in other_person_words
+        ):
             return None
 
         if "middle" in label:
@@ -49,20 +74,65 @@ def get_profile_value(field, user):
         or "phone" in label
         or "mobile" in label
     ):
-        return user.get("phone")
+        phone = user.get("phone")
 
-    if (
-        "AADHAAR" in code
-        or "AADHAR" in code
-        or "aadhaar" in label
-        or "aadhar" in label
-    ):
-        return user.get("aadhaarNumber") or user.get("aadhaar_number")
+        if not phone:
+            return None
+
+        # Stored phone numbers include the country code (e.g.
+        # "+919876543210", the format /verify sends to the OTP API),
+        # but most form fields for a phone number expect a bare local
+        # number. Strip non-digits and use the last 10 — normal for
+        # Indian mobile numbers — so auto-fill doesn't hand a form
+        # field a value it will fail validation on.
+        digits = "".join(ch for ch in phone if ch.isdigit())
+        return digits[-10:] if len(digits) >= 10 else digits
+
+    # Label-only check (not field_code): several forms — Aadhaar
+    # Registration itself included — prefix every one of their own
+    # fields with the form's topic word (e.g. "AADHAAR_DOB",
+    # "AADHAAR_GENDER"). Matching on field_code here would sweep all
+    # of those unrelated fields into being filled with the user's
+    # Aadhaar *number*. The human-readable label doesn't have that
+    # prefix-collision problem.
+    if "aadhaar" in label or "aadhar" in label:
+        aadhaar = user.get("aadhaarNumber") or user.get("aadhaar_number")
+
+        if not aadhaar:
+            return None
+
+        return "".join(ch for ch in aadhaar if ch.isdigit())
+
+    # "Office Address" must never silently default to the user's home
+    # address — most applicants don't have one, and this field is only
+    # asked at all when they've said they do (see CONDITIONAL_FIELDS).
+    if "office" in label or "OFFICE" in code:
+        return None
 
     if "ADDRESS" in code or "address" in label:
         return user.get("address")
 
     return None
+
+
+# ---------------------------------------------------------------------
+# Conditional fields: a field in this dict is only ever asked once its
+# trigger field has been answered, and only shown at all if the
+# trigger's answer matches `show_when`. If the trigger says otherwise,
+# the field is auto-answered with a placeholder so it doesn't block
+# the form from completing (mirrors the paper form: sections like
+# "Office Address" or "Representative Assessee" are simply left blank
+# when not applicable).
+# ---------------------------------------------------------------------
+CONDITIONAL_FIELDS = {
+    "PAN_OFFICE_ADDRESS": {"trigger": "PAN_HAS_OFFICE_ADDRESS", "show_when": "yes"},
+    "PAN_REPRESENTATIVE_NAME": {"trigger": "PAN_HAS_REPRESENTATIVE", "show_when": "yes"},
+}
+
+# Must satisfy every conditional field's own validation_pattern (e.g.
+# PAN_REPRESENTATIVE_NAME's letters-only pattern) — plain words, no
+# digits or punctuation, long enough to clear any min_length in play.
+NOT_APPLICABLE_PLACEHOLDER = "Not Applicable"
 
 
 def create_session(user_id: int, form_id: int):
@@ -213,6 +283,43 @@ def get_session(session_id: int, user_id: int):
         connection.close()
 
 
+def _auto_answer_not_applicable(session_id: int, field_id: int):
+    """Write NOT_APPLICABLE_PLACEHOLDER for a conditional field whose
+    trigger says it doesn't apply, so it never blocks completion —
+    mirrors leaving that section blank on the paper form."""
+
+    connection = get_connection()
+
+    try:
+        result = connection.execute(
+            """
+            SELECT COALESCE(MAX(answer_id), 0) + 1
+            FROM FORM_APP.FORM_ANSWER
+            """
+        ).fetchall()
+
+        answer_id = result[0][0]
+
+        connection.execute(
+            """
+            INSERT INTO FORM_APP.FORM_ANSWER
+            (answer_id, session_id, field_id, answer_value)
+            VALUES ({answer_id}, {session_id}, {field_id}, {answer_value})
+            """,
+            {
+                "answer_id": answer_id,
+                "session_id": session_id,
+                "field_id": field_id,
+                "answer_value": NOT_APPLICABLE_PLACEHOLDER
+            }
+        )
+
+        connection.commit()
+
+    finally:
+        connection.close()
+
+
 # GET CURRENT / NEXT FIELD
 
 def get_current_field(session_id: int, form_id: int):
@@ -223,14 +330,17 @@ def get_current_field(session_id: int, form_id: int):
     if not fields:
         return None
 
+    field_by_code = {f["field_code"]: f for f in fields}
+
     connection = get_connection()
 
     try:
 
-        # Get fields already answered in this session
+        # Get fields already answered in this session, with their values
+        # (needed to resolve conditional fields' triggers).
         result = connection.execute(
             """
-            SELECT DISTINCT field_id
+            SELECT field_id, answer_value
             FROM FORM_APP.FORM_ANSWER
             WHERE session_id = {session_id}
             """,
@@ -239,21 +349,45 @@ def get_current_field(session_id: int, form_id: int):
             }
         ).fetchall()
 
-        answered_field_ids = {
-            row[0]
-            for row in result
-        }
-
     finally:
         connection.close()
 
-    # Find the first unanswered field
+    answered_field_ids = {row[0] for row in result}
+    answer_by_field_id = {row[0]: row[1] for row in result}
+    answer_by_code = {
+        f["field_code"]: answer_by_field_id[f["field_id"]]
+        for f in fields
+        if f["field_id"] in answer_by_field_id
+    }
+
+    # Find the first unanswered field, honoring CONDITIONAL_FIELDS.
     for field in fields:
 
         field_id = field.get("field_id")
 
-        if field_id not in answered_field_ids:
-            return field
+        if field_id in answered_field_ids:
+            continue
+
+        condition = CONDITIONAL_FIELDS.get(field["field_code"])
+
+        if condition:
+            trigger_value = answer_by_code.get(condition["trigger"])
+
+            if trigger_value is None:
+                # Trigger not yet answered — field_order always places
+                # the trigger earlier, so this shouldn't happen in
+                # practice; skip rather than ask out of order.
+                continue
+
+            if trigger_value.strip().lower() != condition["show_when"]:
+                # Trigger says this section doesn't apply — auto-fill
+                # and move on instead of asking a question the user
+                # already said "no" to.
+                _auto_answer_not_applicable(session_id, field_id)
+                answered_field_ids.add(field_id)
+                continue
+
+        return field
 
     # Every field has been answered
     return None
@@ -399,6 +533,12 @@ def validate_field_value(field, value):
     validation_pattern = field.get("validation_pattern")
 
     if validation_pattern and validation_pattern != "NULL":
+        # Some patterns stored in Exasol come back double-escaped
+        # (e.g. "\\\\s" instead of "\\s") — normalize the same way
+        # agents/qa/agent.py already does, otherwise valid values like
+        # a normal email address get rejected.
+        validation_pattern = validation_pattern.replace("\\\\", "\\")
+
         try:
             if not re.fullmatch(validation_pattern, value):
                 raise ValueError(

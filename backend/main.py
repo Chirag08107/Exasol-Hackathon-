@@ -7,6 +7,7 @@ from routes.users import router as users_router
 from routes.forms import router as forms_router
 from routes.sessions import router as sessions_router
 from routes.chat import router as chat_router
+from routes.pdf import router as pdf_router
 
 
 app = FastAPI(
@@ -36,6 +37,7 @@ app.include_router(users_router)
 app.include_router(forms_router)
 app.include_router(sessions_router)
 app.include_router(chat_router)
+app.include_router(pdf_router)
 
 
 @app.get("/")

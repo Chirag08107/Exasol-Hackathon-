@@ -41,9 +41,10 @@ export default function About() {
             Built to make Indian<br /><span className="accent-word">government paperwork painless.</span>
           </h1>
           <p className="hero-subtitle">
-            FormSahay is a hackathon project for the Exasol Hackathon — an assistant that
-            turns confusing government forms into a clear, guided conversation, backed by
-            an 80-form knowledge base stored in Exasol.
+            FormSahay is an AI assistant that turns confusing government paperwork into a
+            simple conversation. Tell us which form you need, answer only what we don't
+            already know about you, and we hand you a correctly filled PDF — ready for you
+            to review and submit yourself.
           </p>
         </section>
 
@@ -77,8 +78,13 @@ export default function About() {
           <Link to="/" className="btn-brand-outline">Open the assistant</Link>
         </section>
       </main>
-      <footer className="app-footer p-2 text-center">
-        © {new Date().getFullYear()} FormSahay — Built for the Exasol Hackathon
+      <footer className="app-footer">
+        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 px-3 py-2">
+          <span>© {new Date().getFullYear()} FormSahay — an assistant, not a filing service.</span>
+          <span className="text-muted small">
+            We help you fill the form. You review, print/upload, and submit it yourself.
+          </span>
+        </div>
       </footer>
     </div>
   );

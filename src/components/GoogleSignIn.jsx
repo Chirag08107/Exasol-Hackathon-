@@ -8,40 +8,75 @@ const GoogleSignIn = ({ text = "signin_with" }) => {
   const { googleLogin } = useAuth();
 
   useEffect(() => {
-    if (!window.google || !buttonRef.current) {
+    if (!import.meta.env.VITE_GOOGLE_CLIENT_ID) {
+      console.warn(
+        "VITE_GOOGLE_CLIENT_ID is not set — Google Sign-In button will not render. See .env.local."
+      );
       return;
     }
 
-    window.google.accounts.id.initialize({
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+    let cancelled = false;
 
-      callback: async (response) => {
-        try {
-          await googleLogin(response.credential);
+    function render() {
+      if (cancelled || !buttonRef.current) return;
 
-          navigate("/");
-        } catch (error) {
-          console.error("Google login failed:", error);
-          alert(error.message);
-        }
-      },
-    });
+      window.google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
 
-    window.google.accounts.id.renderButton(
-      buttonRef.current,
-      {
+        callback: async (response) => {
+          try {
+            await googleLogin(response.credential);
+            navigate("/");
+          } catch (error) {
+            console.error("Google login failed:", error);
+            alert(error.message);
+          }
+        },
+      });
+
+      window.google.accounts.id.renderButton(buttonRef.current, {
         theme: "outline",
         size: "large",
-        text: text,
+        text,
         shape: "rectangular",
         logo_alignment: "left",
         width: 350,
-      }
-    );
+      });
+    }
+
+    // The Google Identity Services script is loaded with async/defer,
+    // so it may not be ready yet when this component first mounts.
+    // Poll briefly until window.google shows up instead of silently
+    // giving up (which is what caused the button to never render).
+    if (window.google?.accounts?.id) {
+      render();
+    } else {
+      const interval = setInterval(() => {
+        if (window.google?.accounts?.id) {
+          clearInterval(interval);
+          render();
+        }
+      }, 100);
+
+      const timeout = setTimeout(() => clearInterval(interval), 10000);
+
+      return () => {
+        cancelled = true;
+        clearInterval(interval);
+        clearTimeout(timeout);
+      };
+    }
+
+    return () => {
+      cancelled = true;
+    };
   }, [googleLogin, navigate, text]);
 
-    return <div className="google-signin-container">
-        <div ref={buttonRef}></div></div>;
+  return (
+    <div className="google-signin-container">
+      <div ref={buttonRef}></div>
+    </div>
+  );
 };
 
 export default GoogleSignIn;

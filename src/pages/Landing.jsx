@@ -1,79 +1,86 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
-import { searchForms, createSession, getSession, submitAnswer } from "../services/api";
+import { searchForms, createSession, getSession, submitAnswer, getSessionPdf } from "../services/api";
 
-const CATEGORIES = [
-  { icon: "🪪", label: "Aadhaar" },
-  { icon: "🛂", label: "Passport" },
-  { icon: "💳", label: "PAN Card" },
-  { icon: "🧾", label: "ITR" },
-  { icon: "🚗", label: "Driving License" },
-  { icon: "🏦", label: "Bank KYC" },
-];
-
-const POPULAR_FORMS = [
-  { title: "PAN Card", meta: "Tax & Finance" },
-  { title: "Aadhaar Registration", meta: "Identity & Travel" },
-  { title: "Passport Application", meta: "Identity & Travel" },
-  { title: "ITR-1 Filing", meta: "Tax & Finance" },
-];
-
-const HISTORY = [
-  { label: "Passport renewal steps", active: true },
-  { label: "PAN card correction" },
-  { label: "GST registration help" },
+const QUICK_LINKS = [
+  { icon: "💳", label: "PAN Card", query: "PAN card" },
+  { icon: "🪪", label: "Aadhaar", query: "Aadhaar" },
+  { icon: "🛂", label: "Passport", query: "Passport" },
+  { icon: "🚗", label: "Driving License", query: "Driving License" },
 ];
 
 export default function Landing() {
-  const navigate = useNavigate();
   const { user } = useAuth();
 
   const [message, setMessage] = useState("");
-  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showVerifyPopup, setShowVerifyPopup] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
 
+  const [results, setResults] = useState(null);
   const [selectedForm, setSelectedForm] = useState(null);
   const [session, setSession] = useState(null);
   const [answer, setAnswer] = useState("");
 
-  const inputRef = useRef(null);
+  // Conversation history: {role: 'ai'|'user', text, fieldId?, options?}
+  const [history, setHistory] = useState([]);
+
+  const [pdfUrl, setPdfUrl] = useState(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
+
   const scrollRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [results, session, loading, error]);
+  }, [results, session, loading, error, pdfUrl, pdfLoading, history]);
 
-  async function runSearch(query) {
+  const started = Boolean(results || session);
+
+  // Whenever the backend hands us a new current_field, append it to the
+  // conversation as an "ai" turn (once — not on every re-render).
+  useEffect(() => {
+    const field = session?.current_field;
+    if (!field) return;
+
+    setHistory((h) => {
+      const alreadyAsked = h.some((item) => item.role === "ai" && item.fieldId === field.field_id);
+      if (alreadyAsked) return h;
+
+      return [
+        ...h,
+        {
+          role: "ai",
+          fieldId: field.field_id,
+          text: field.field_label,
+          explanation: field.explanation,
+          options: field.options,
+        },
+      ];
+    });
+  }, [session?.current_field?.field_id]);
+
+  async function handleSearch(query) {
     const trimmed = query.trim();
     if (!trimmed) return;
 
-    setMessage(trimmed);
+    setMessage("");
     setLoading(true);
     setError("");
-    setHasSearched(true);
-    setResults([]);
+    setResults({ query: trimmed, forms: [] });
 
     try {
       const data = await searchForms(trimmed);
-      setResults(data.results || []);
+      setResults({ query: trimmed, forms: data.results || [] });
     } catch (err) {
-      setError(err.message || "Unable to search forms. Please try again.");
+      setError(err.message || "Unable to search forms.");
     } finally {
       setLoading(false);
     }
   }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    runSearch(message);
-  };
 
   async function handleSelectForm(form) {
     if (!user?.isVerified && !user?.verified) {
@@ -96,91 +103,103 @@ export default function Landing() {
 
       const sessionData = await getSession(sessionId);
       setSession(sessionData);
+      setResults(null);
       setAnswer("");
-      setResults([]);
-      setHasSearched(false);
+      setHistory([]);
     } catch (err) {
-      if (err.message === "LOGIN_REQUIRED") {
-        setError("Please login before starting a form.");
-      } else {
-        setError(err.message || "Unable to start the form.");
-      }
+      setError(err.message === "LOGIN_REQUIRED" ? "Please login before starting a form." : (err.message || "Unable to start the form."));
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleContinue() {
-    if (!session || !session.current_field) return;
-    const fieldId = session.current_field.field_id;
+  async function submitFieldAnswer(value) {
+    const trimmed = (value || "").trim();
+    if (!session || !session.current_field || !trimmed) return;
 
-    if (!answer.trim()) {
-      setError("Please enter an answer before continuing.");
-      return;
-    }
+    const field = session.current_field;
 
     setLoading(true);
     setError("");
 
     try {
-      const data = await submitAnswer(session.session_id, fieldId, answer);
+      const data = await submitAnswer(session.session_id, field.field_id, trimmed);
 
       if (!data.session) {
         throw new Error("Answer was saved, but updated session data was not returned.");
       }
 
+      // Only record the answer in the visible chat once the backend has
+      // actually accepted it — an optimistic push here would show a
+      // rejected/invalid answer as if it had been said.
+      setHistory((h) => [...h, { role: "user", text: trimmed }]);
       setSession(data.session);
       setAnswer("");
     } catch (err) {
-      if (err.message === "LOGIN_REQUIRED") {
-        setError("Please login before continuing.");
-      } else {
-        setError(err.message || "Unable to submit your answer.");
-      }
+      setError(err.message === "LOGIN_REQUIRED" ? "Please login before continuing." : (err.message || "Unable to submit your answer."));
     } finally {
       setLoading(false);
     }
   }
 
+  const formCompleted = Boolean(session) && !session.current_field;
+
+  useEffect(() => {
+    if (!formCompleted || pdfUrl || pdfLoading) return;
+
+    let cancelled = false;
+
+    (async () => {
+      setPdfLoading(true);
+      try {
+        const { blob } = await getSessionPdf(session.session_id);
+        if (!cancelled) setPdfUrl(URL.createObjectURL(blob));
+      } catch (err) {
+        if (!cancelled) setError(err.message || "Unable to generate the completed PDF.");
+      } finally {
+        if (!cancelled) setPdfLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formCompleted, session?.session_id]);
+
   function handleNewChat() {
     setMessage("");
-    setResults([]);
-    setError("");
-    setHasSearched(false);
+    setResults(null);
     setSelectedForm(null);
     setSession(null);
     setAnswer("");
+    setError("");
+    setHistory([]);
+    if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+    setPdfUrl(null);
+    setPdfLoading(false);
     setTimeout(() => inputRef.current?.focus(), 0);
   }
 
-  const started = hasSearched || session;
-  const progress = session?.progress;
-  const progressPct = progress?.total ? (progress.completed / progress.total) * 100 : 0;
+  function focusInput() {
+    inputRef.current?.focus();
+  }
+
+  // The latest "ai" history entry is still awaiting an answer if no
+  // "user" entry has been added after it yet.
+  const lastEntry = history[history.length - 1];
+  const awaitingOptionAnswer = lastEntry?.role === "ai" && lastEntry.options?.length > 0 && !loading;
 
   return (
     <div className="d-flex flex-column vh-100">
       {showVerifyPopup && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(22, 35, 31, 0.45)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-          }}
-        >
-          <div className="auth-card" style={{ background: "var(--surface)", borderRadius: "var(--radius)", padding: "2rem", boxShadow: "0 12px 40px rgba(22,35,31,0.25)" }}>
-            <h4 className="mb-2">Verify yourself first</h4>
-            <p style={{ color: "var(--ink-soft)" }}>
-              You'll need to verify your identity before we can help you fill out a government form.
-            </p>
-            <div className="d-flex gap-2 justify-content-end mt-3">
-              <button type="button" className="btn-ghost" onClick={() => setShowVerifyPopup(false)}>Cancel</button>
-              <button type="button" className="btn-warn" onClick={() => { setShowVerifyPopup(false); navigate("/verify"); }}>
-                Verify Now
-              </button>
+        <div className="modal-overlay" onClick={() => setShowVerifyPopup(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <h5 className="mb-2">Verify yourself first</h5>
+            <p className="mb-3">You need to verify your identity before filling out a government form.</p>
+            <div className="d-flex gap-2 justify-content-end">
+              <button className="btn-brand-outline" onClick={() => setShowVerifyPopup(false)}>Cancel</button>
+              <a className="btn-warn" href="/verify">Verify Now</a>
             </div>
           </div>
         </div>
@@ -188,220 +207,169 @@ export default function Landing() {
 
       <Navbar />
       <div className="d-flex flex-grow-1 overflow-hidden">
-        <aside className="side-rail border-end p-3 d-none d-lg-flex" style={{ width: 240 }}>
-          <button className="btn-brand-outline w-100" onClick={handleNewChat}>+ New Chat</button>
-
-          <div className="side-rail-label">Recent</div>
-          {HISTORY.map((h) => (
-            <div key={h.label} className={`side-item ${h.active ? "active" : ""}`}>
-              <span className="side-item-icon">💬</span>
-              <span className="text-truncate">{h.label}</span>
-            </div>
-          ))}
-
-          <div className="mt-auto pt-3" style={{ borderTop: "1px solid var(--line)" }}>
-            {user ? (
-              <div style={{ fontSize: "0.78rem", color: "var(--ink-soft)" }}>
-                Signed in as <strong style={{ color: "var(--ink)" }}>{user.firstName || user.userName}</strong>
-                {!(user.isVerified || user.verified) && (
-                  <div className="badge-warn mt-2 d-inline-block">Not verified</div>
-                )}
-              </div>
-            ) : (
-              <div style={{ fontSize: "0.78rem", color: "var(--ink-soft)" }}>
-                Sign in to save your chats and prefill your forms.
+        <main className="flex-grow-1 d-flex flex-column p-4">
+          <div ref={scrollRef} className="flex-grow-1" style={{ overflowY: "auto" }}>
+            {!started && (
+              <div className="h-100 d-flex flex-column align-items-center justify-content-center text-center">
+                <span className="hero-eyebrow">🇮🇳 Government forms, simplified</span>
+                <span className="chat-prompt mt-3">What's in your mind?</span>
+                <p className="hero-subtitle mt-2">
+                  Search for the form you need — PAN, Aadhaar, passport, ITR, and more —
+                  and I'll walk you through it field by field.
+                </p>
               </div>
             )}
-          </div>
-        </aside>
 
-        <main className="flex-grow-1 d-flex flex-column p-3 p-md-4 overflow-hidden">
-          {!started ? (
-            <div className="flex-grow-1 d-flex align-items-center justify-content-center overflow-auto py-4">
-              <div className="hero-wrap">
-                <span className="hero-eyebrow">🇮🇳 80+ Indian government forms supported</span>
-                <h1 className="hero-title">
-                  Government paperwork,<br />
-                  <span className="accent-word">finally made simple.</span>
-                </h1>
-                <p className="hero-subtitle">
-                  Search for the form you're stuck on — PAN, Aadhaar, passport, ITR, and more —
-                  and FormSahay will walk you through it field by field.
-                </p>
+            {started && (
+              <div className="d-flex flex-column gap-2">
+                {results?.query && <div className="msg msg-user">{results.query}</div>}
 
-                <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
-                  {CATEGORIES.map((c) => (
-                    <button key={c.label} type="button" className="chip" onClick={() => runSearch(c.label)}>
-                      <span className="chip-icon">{c.icon}</span>
-                      {c.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div ref={scrollRef} className="chat-scroll flex-grow-1 py-2">
-              <div className="mx-auto" style={{ maxWidth: 760 }}>
-                {message && (
-                  <div className="chat-row from-user">
-                    <div className="chat-bubble">{message}</div>
-                  </div>
-                )}
+                {loading && !session && <div className="msg msg-bot">Searching…</div>}
 
-                {loading && (
-                  <div className="chat-row from-assistant">
-                    <div className="chat-avatar">✦</div>
-                    <div className="chat-bubble">
-                      <span className="typing-dots"><span /><span /><span /></span>
-                    </div>
-                  </div>
-                )}
-
-                {error && (
-                  <div className="chat-row from-assistant">
-                    <div className="chat-avatar">✦</div>
-                    <div className="chat-bubble" style={{ borderColor: "var(--warn)", color: "var(--warn)" }}>
-                      ⚠ {error}
-                    </div>
-                  </div>
-                )}
-
-                {!loading && !error && !session && hasSearched && (
-                  <div className="chat-row from-assistant">
-                    <div className="chat-avatar">✦</div>
-                    <div className="chat-bubble">
-                      {results.length > 0
-                        ? `I found ${results.length} matching form${results.length === 1 ? "" : "s"}. Pick one to get started:`
-                        : "I couldn't find a matching form. Try a different keyword — e.g. \"passport\" or \"PAN card\"."}
-                    </div>
-                  </div>
-                )}
-
-                {!loading && results.length > 0 && (
-                  <div className="mb-3" style={{ marginLeft: "2.4rem" }}>
-                    <div className="d-flex flex-column gap-2">
-                      {results.map((form) => (
-                        <div key={form.form_id} className="popular-form-card" onClick={() => handleSelectForm(form)}>
-                          <div className="flex-grow-1">
-                            <div className="popular-form-title">{form.form_name}</div>
-                            <div className="popular-form-meta">
-                              {form.form_code}{form.category ? ` · ${form.category}` : ""}
+                {results && !loading && !error && (
+                  <div className="msg msg-bot">
+                    {results.forms.length === 0 ? (
+                      <span>No matching forms found. Try a different keyword.</span>
+                    ) : (
+                      <div>
+                        <div className="mb-2">Found {results.forms.length} matching form(s):</div>
+                        <div className="d-flex flex-column gap-2">
+                          {results.forms.map((form) => (
+                            <div key={form.form_id} className="result-card">
+                              <div>
+                                <div style={{ fontWeight: 500 }}>{form.form_name}</div>
+                                <div className="text-muted small">{form.form_code}{form.category ? ` · ${form.category}` : ""}</div>
+                              </div>
+                              <button className="btn-brand" onClick={() => handleSelectForm(form)}>Select</button>
                             </div>
-                            {form.description && (
-                              <div className="popular-form-meta mt-1">{form.description}</div>
-                            )}
-                          </div>
-                          <button type="button" className="btn-brand" style={{ flexShrink: 0 }}>
-                            Select
-                          </button>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {session && selectedForm && (
                   <>
-                    {progress && (
-                      <div className="mb-3" style={{ marginLeft: "2.4rem", maxWidth: 460 }}>
-                        <div className="d-flex justify-content-between mb-1" style={{ fontSize: "0.8rem", color: "var(--ink-soft)" }}>
-                          <span>{selectedForm.form_name}</span>
-                          <span>{progress.completed || 0} / {progress.total || 0}</span>
-                        </div>
-                        <div style={{ height: 6, borderRadius: 999, background: "var(--line)", overflow: "hidden" }}>
-                          <div style={{ height: "100%", width: `${progressPct}%`, background: "var(--accent)", transition: "width 0.3s ease" }} />
-                        </div>
+                    {session.progress && (
+                      <div className="text-muted small">
+                        {selectedForm.form_name} — {session.progress.completed || 0}/{session.progress.total || 0} answered
                       </div>
                     )}
 
-                    {session.current_field && !loading && (
-                      <div className="chat-row from-assistant">
-                        <div className="chat-avatar">✦</div>
-                        <div className="chat-bubble">
-                          <strong>{session.current_field.field_label}</strong>
-                          {session.current_field.explanation && (
-                            <div className="mt-1" style={{ fontSize: "0.88rem", color: "var(--ink-soft)" }}>
-                              {session.current_field.explanation}
+                    {/* Full Q&A conversation, in order — AI question, then the user's reply, repeating. */}
+                    {history.map((entry, i) =>
+                      entry.role === "ai" ? (
+                        <div key={`ai-${entry.fieldId}-${i}`} className="msg msg-bot">
+                          <strong>{entry.text}</strong>
+                          {entry.explanation && (
+                            <div className="text-muted small mt-1">{entry.explanation}</div>
+                          )}
+                          {entry.options?.length > 0 && awaitingOptionAnswer && i === history.length - 1 && (
+                            <div className="option-chip-row mt-2">
+                              {entry.options.map((opt) => (
+                                <button
+                                  key={opt.option_id ?? opt.option_code ?? opt.option_label}
+                                  type="button"
+                                  className="option-chip"
+                                  onClick={() => submitFieldAnswer(opt.option_code || opt.option_label)}
+                                >
+                                  {opt.option_label || opt.option_code}
+                                </button>
+                              ))}
                             </div>
                           )}
                         </div>
-                      </div>
+                      ) : (
+                        <div key={`user-${i}`} className="msg msg-user">{entry.text}</div>
+                      )
                     )}
 
                     {!session.current_field && (
-                      <div className="chat-row from-assistant">
-                        <div className="chat-avatar">✦</div>
-                        <div className="chat-bubble">This form has been completed! 🎉</div>
+                      <div className="msg msg-bot">
+                        {pdfLoading && <span>All fields are complete — generating your PDF…</span>}
+
+                        {!pdfLoading && pdfUrl && (
+                          <div>
+                            <strong>Form ready! Please carefully check the completed form before submitting it.</strong>
+                            <p className="text-muted small mt-1 mb-2">
+                              Review all details carefully. If a hard copy is required, print and submit it
+                              yourself. If an online upload is required, upload it yourself.
+                            </p>
+                            <div className="d-flex gap-2">
+                              <a href={pdfUrl} target="_blank" rel="noreferrer" className="btn-brand">View PDF</a>
+                              <a href={pdfUrl} download={`form_${session.session_id}.pdf`} className="btn-brand-outline">Download</a>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
                   </>
                 )}
-              </div>
-            </div>
-          )}
 
-          {session && session.current_field ? (
-            <form
-              onSubmit={(e) => { e.preventDefault(); handleContinue(); }}
-              className="mx-auto w-100"
-              style={{ maxWidth: 760 }}
-            >
-              <div className="chat-input-row">
-                <input
-                  className="chat-input-plain"
-                  value={answer}
-                  onChange={(e) => setAnswer(e.target.value)}
-                  placeholder={session.current_field.example_value || "Type your answer..."}
-                  disabled={loading}
-                />
-                <button className="send-btn btn-brand" style={{ borderRadius: "50%", width: 40, height: 40, padding: 0 }} disabled={!answer.trim() || loading}>
-                  ↑
-                </button>
+                {loading && session?.current_field && <div className="msg msg-bot">Saving…</div>}
+
+                {error && <div className="msg msg-bot text-danger">{error}</div>}
               </div>
-            </form>
-          ) : !session && (
-            <form onSubmit={handleSubmit} className="mx-auto w-100" style={{ maxWidth: 760 }}>
-              <div className="chat-input-row">
-                <input
-                  ref={inputRef}
-                  className="chat-input-plain"
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    if (hasSearched) {
-                      setHasSearched(false);
-                      setResults([]);
-                      setError("");
-                    }
-                  }}
-                  placeholder="Search for a government form..."
-                  disabled={loading}
-                />
-                <button className="send-btn btn-brand" style={{ borderRadius: "50%", width: 40, height: 40, padding: 0 }} disabled={!message.trim() || loading}>
-                  ↑
-                </button>
-              </div>
-              <p className="chat-disclaimer">
-                Connected to the FormSahay backend — results depend on the live Exasol form database.
-              </p>
-            </form>
-          )}
+            )}
+          </div>
+
+          <form
+            className="d-flex gap-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              if (session?.current_field) {
+                submitFieldAnswer(answer);
+              } else {
+                handleSearch(message);
+              }
+            }}
+          >
+            <input
+              ref={inputRef}
+              className="chat-input flex-grow-1"
+              value={session?.current_field ? answer : message}
+              onChange={(e) => (session?.current_field ? setAnswer(e.target.value) : setMessage(e.target.value))}
+              placeholder={
+                awaitingOptionAnswer
+                  ? "Pick an option above, or type it here..."
+                  : session?.current_field
+                  ? "Type your answer..."
+                  : "Type a message..."
+              }
+              disabled={loading || formCompleted}
+            />
+            <button className="send-btn" disabled={loading || formCompleted}>↑</button>
+          </form>
         </main>
 
-        <aside className="side-rail border-start p-3 d-none d-xl-flex" style={{ width: 260 }}>
-          <div className="side-rail-label" style={{ marginTop: 0 }}>Popular forms</div>
-          {POPULAR_FORMS.map((f) => (
-            <div key={f.title} className="popular-form-card" onClick={() => runSearch(f.title)}>
-              <div>
-                <div className="popular-form-title">{f.title}</div>
-                <div className="popular-form-meta">{f.meta}</div>
-              </div>
-            </div>
+        <aside className="side-rail border-start p-3" style={{ width: 220 }}>
+          <button type="button" className="side-item side-item-btn mb-2" onClick={focusInput}>
+            🔍 Search
+          </button>
+
+          {started && (
+            <button type="button" className="side-item side-item-btn mb-3" onClick={handleNewChat}>
+              + New chat
+            </button>
+          )}
+
+          <div className="side-rail-label">Quick links</div>
+          {QUICK_LINKS.map((q) => (
+            <button key={q.label} type="button" className="side-item side-item-btn" onClick={() => handleSearch(q.query)}>
+              {q.icon} {q.label}
+            </button>
           ))}
         </aside>
       </div>
-      <footer className="app-footer p-2 text-center">
-        © {new Date().getFullYear()} FormSahay — Built for the Exasol Hackathon
+      <footer className="app-footer">
+        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 px-3 py-2">
+          <span>© {new Date().getFullYear()} FormSahay — an assistant, not a filing service.</span>
+          <span className="text-muted small">
+            We help you fill the form. You review, print/upload, and submit it yourself.
+          </span>
+        </div>
       </footer>
     </div>
   );

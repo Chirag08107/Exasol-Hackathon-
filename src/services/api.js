@@ -107,3 +107,34 @@ export async function submitAnswer(sessionId, fieldId, value) {
 
   return response.json();
 }
+
+export async function getSessionPdf(sessionId) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/sessions/${sessionId}/pdf`,
+    {
+      headers: {
+        ...getAuthHeaders(),
+      },
+    }
+  );
+
+  if (response.status === 401) {
+    throw new Error("LOGIN_REQUIRED");
+  }
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+
+    throw new Error(
+      data.detail || "Failed to generate the completed PDF"
+    );
+  }
+
+  const blob = await response.blob();
+
+  return {
+    blob,
+    readyMessage: response.headers.get("X-Form-Message"),
+    reviewNote: response.headers.get("X-Form-Review-Note"),
+  };
+}

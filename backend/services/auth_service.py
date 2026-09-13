@@ -78,6 +78,43 @@ def get_user_by_id(user_id: int):
         connection.close()
 
 
+def update_user_profile(
+    user_id: int,
+    first_name: str,
+    middle_name: str | None,
+    last_name: str,
+    address: str | None
+):
+    connection = get_connection()
+
+    try:
+        connection.execute(
+            """
+            UPDATE FORM_APP.USER_ACCOUNT
+            SET
+                first_name = {first_name},
+                middle_name = {middle_name},
+                last_name = {last_name},
+                address = COALESCE({address}, address)
+            WHERE user_id = {user_id}
+            """,
+            {
+                "first_name": first_name,
+                "middle_name": middle_name,
+                "last_name": last_name,
+                "address": address,
+                "user_id": user_id
+            }
+        )
+
+        connection.commit()
+
+    finally:
+        connection.close()
+
+    return get_user_by_id(user_id)
+
+
 def register_user(data):
 
     connection = get_connection()
