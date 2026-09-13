@@ -1,0 +1,151 @@
+requirement_id,form_id,requirement_type,requirement_text,severity,condition
+1,1,ELIGIBILITY,Must be an Indian resident for tax purposes,HIGH,Applies to all applicants
+2,1,ELIGIBILITY,Income above or below taxable limit depending on ITR type,MEDIUM,Varies by ITR form used
+3,1,ELIGIBILITY,Must have completed financial year assessment,HIGH,Applies to all filers
+4,1,DOCUMENT,Copy of PAN card,HIGH,Mandatory for identification
+5,1,DOCUMENT,Proof of income (salary slip, bank statement),HIGH,Mandatory for verification
+6,1,CONDITION,Filing must be done within due date (31st July),HIGH,Extension available in special cases
+7,2,ELIGIBILITY,Indian resident or person of Indian origin,HIGH,For passport application
+8,2,ELIGIBILITY,Must be at least 21 years old OR parents must apply,HIGH,For passport issuance
+9,2,DOCUMENT,Birth certificate or school leaving certificate,HIGH,Mandatory for age proof
+10,2,DOCUMENT,Identity proof (Aadhaar/Passport/Voter ID),HIGH,Mandatory for identification
+11,2,DOCUMENT,Address proof (Utility bill/Rent agreement),HIGH,Mandatory for address verification
+12,2,DOCUMENT,Police verification clearance,HIGH,Mandatory for security clearance
+13,3,ELIGIBILITY,Business turnover above Rs 20 lakhs in previous FY,MEDIUM,Threshold for GST registration
+14,3,ELIGIBILITY,Indian business entity with PAN,HIGH,Mandatory requirement
+15,3,DOCUMENT,PAN certificate of business entity,HIGH,Mandatory identification
+16,3,DOCUMENT,Address proof of business premises,HIGH,Mandatory verification
+17,3,DOCUMENT,Bank account details for business,HIGH,For refund and payment processing
+18,4,ELIGIBILITY,Must be born in India or reside in India,HIGH,For Aadhaar enrollment
+19,4,ELIGIBILITY,Any age - infants to elderly eligible,MEDIUM,All age groups covered
+20,4,DOCUMENT,Proof of identity (any government ID),HIGH,Mandatory for verification
+21,4,DOCUMENT,Proof of address,HIGH,Mandatory for address registration
+22,4,DOCUMENT,Proof of relationship (for minors),MEDIUM,Required only for children below 5 years
+23,5,ELIGIBILITY,Indian citizen or person of Indian origin abroad,HIGH,For OCI application
+24,5,ELIGIBILITY,Minor applicant must have parental consent,HIGH,For minors below 18 years
+25,5,DOCUMENT,Full birth certificate (not short form),HIGH,Mandatory for age proof
+26,5,DOCUMENT,Proof of Indian citizenship,HIGH,Mandatory requirement
+27,5,DOCUMENT,Proof of address,HIGH,Mandatory for residential verification
+28,5,DOCUMENT,Police clearance certificate,HIGH,Mandatory security check
+29,6,ELIGIBILITY,Must be 18 years or above,HIGH,Legal age requirement
+30,6,DOCUMENT,Age proof (Birth certificate/School certificate),HIGH,Mandatory for age verification
+31,6,DOCUMENT,Residential address proof,HIGH,Mandatory requirement
+32,6,DOCUMENT,Passport size photographs,HIGH,4x6 cm specification
+33,6,DOCUMENT,Medical fitness certificate,MEDIUM,For heavy motor vehicle class
+34,7,ELIGIBILITY,Must be Indian citizen,HIGH,Citizenship requirement
+35,7,ELIGIBILITY,Must be 18 years or above,HIGH,Minimum age requirement
+36,7,DOCUMENT,Citizenship proof (Passport/Aadhaar),HIGH,Mandatory identification
+37,7,DOCUMENT,Address proof,HIGH,Mandatory verification
+38,7,CONDITION,Must pass written test and practical driving test,HIGH,Competency requirement
+39,8,ELIGIBILITY,Tax filing must include income from business/profession,HIGH,For ITR-3 eligibility
+40,8,ELIGIBILITY,Gross total income above Rs 5 lakh,MEDIUM,Income threshold
+41,8,DOCUMENT,Business profit/loss statement,HIGH,Mandatory for verification
+42,8,DOCUMENT,Bank statements and transaction records,HIGH,For income verification
+43,9,ELIGIBILITY,Applicant must be Indian resident,HIGH,Citizenship requirement
+44,9,ELIGIBILITY,Age 18 or above,HIGH,Legal age requirement
+45,9,DOCUMENT,Valid identity proof (PAN/Passport/Aadhaar),HIGH,Mandatory identification
+46,9,DOCUMENT,Address proof from government source,HIGH,Mandatory verification
+47,10,ELIGIBILITY,Member must have active PF account,HIGH,Account status requirement
+48,10,ELIGIBILITY,Withdrawal only possible after specific tenure,MEDIUM,Policy conditions apply
+49,10,DOCUMENT,PF account statement,HIGH,For balance verification
+50,10,DOCUMENT,Bank account details,HIGH,For fund transfer
+51,11,ELIGIBILITY,ESI coverage must be active for at least 2 years,HIGH,Eligibility period
+52,11,ELIGIBILITY,Employee contribution record must be valid,HIGH,Contribution requirement
+53,11,DOCUMENT,ESI account number proof,HIGH,Account identification
+54,11,DOCUMENT,Medical examination report,HIGH,For health-related claims
+55,12,ELIGIBILITY,Family income below poverty line,HIGH,Income criterion
+56,12,ELIGIBILITY,Must be student in recognized school/college,HIGH,Education requirement
+57,12,DOCUMENT,School/college identity card,HIGH,For admission proof
+58,12,DOCUMENT,Previous year mark sheet,HIGH,For merit verification
+59,12,DOCUMENT,Family income certificate,HIGH,For means-testing
+60,13,ELIGIBILITY,Property must be surveyed and demarcated,HIGH,Legal requirement
+61,13,ELIGIBILITY,Property ownership must be clearly established,HIGH,Title verification
+62,13,DOCUMENT,Deed of sale or inheritance document,HIGH,Proof of ownership
+63,13,DOCUMENT,Site plan and measurement details,HIGH,Property identification
+64,13,DOCUMENT,Photo identification of owner,HIGH,For verification
+65,14,ELIGIBILITY,Previous owner must give consent letter,HIGH,Legal requirement
+66,14,ELIGIBILITY,New owner must be identified clearly,HIGH,Identity verification
+67,14,DOCUMENT,Previous ownership documents,HIGH,Chain of title
+68,14,DOCUMENT,Sale deed or transfer document,HIGH,Transfer proof
+69,15,ELIGIBILITY,Vehicle must be registered first,HIGH,Ownership requirement
+70,15,ELIGIBILITY,Age proof required for owner,HIGH,Legal requirement
+71,15,DOCUMENT,Original ownership documents,HIGH,Title proof
+72,15,DOCUMENT,Engine and chassis number verification,HIGH,Vehicle identification
+73,15,DOCUMENT,Insurance certificate,HIGH,Mandatory requirement
+74,16,ELIGIBILITY,Both parties must consent to transfer,HIGH,Legal requirement
+75,16,ELIGIBILITY,Transfer must be within 14 days of sale,MEDIUM,Time constraint
+76,16,DOCUMENT,Transfer form duly filled and signed,HIGH,Application document
+77,16,DOCUMENT,NOC from previous owner,HIGH,Consent proof
+78,17,ELIGIBILITY,Family income below poverty line,HIGH,Economic criterion
+79,17,ELIGIBILITY,Must not hold other health insurance,MEDIUM,Policy condition
+80,17,DOCUMENT,Income certificate,HIGH,Income verification
+81,17,DOCUMENT,Family identity documents,HIGH,Member verification
+82,18,ELIGIBILITY,Must have active LPG connection,HIGH,Connection requirement
+83,18,ELIGIBILITY,Must have valid Aadhaar linked to connection,HIGH,ID requirement
+84,18,DOCUMENT,LPG bill copy,HIGH,Connection proof
+85,18,DOCUMENT,Bank account details,HIGH,For subsidy transfer
+86,18,DOCUMENT,Aadhaar card,HIGH,Mandatory identification
+87,19,ELIGIBILITY,Applicant must reside in the district,HIGH,Locality requirement
+88,19,ELIGIBILITY,Family income must meet criteria,HIGH,Economic criterion
+89,19,DOCUMENT,Income certificate from Tahsildar,HIGH,Income verification
+90,19,DOCUMENT,Residential address proof,HIGH,Domicile verification
+91,20,ELIGIBILITY,Applicant must be 60 years or above,HIGH,Age requirement
+92,20,ELIGIBILITY,Monthly income below prescribed limit,HIGH,Economic criterion
+93,20,DOCUMENT,Age proof (Birth certificate/PAN),HIGH,Age verification
+94,20,DOCUMENT,Residential proof,HIGH,Address verification
+95,20,DOCUMENT,Bank account for direct transfer,HIGH,Payment mode requirement
+96,21,ELIGIBILITY,Income must meet lender's requirements,HIGH,Financial criterion
+97,21,ELIGIBILITY,Credit score must be above minimum threshold,MEDIUM,Credit check requirement
+98,21,DOCUMENT,Salary slips (last 3-6 months),HIGH,Income verification
+99,21,DOCUMENT,IT returns or income certificate,HIGH,Income documentation
+100,21,DOCUMENT,Bank statements,HIGH,Financial history
+101,22,ELIGIBILITY,Applicant must have PAN,HIGH,Tax identification
+102,22,ELIGIBILITY,Must be resident for tax purposes,HIGH,Tax residency
+103,22,DOCUMENT,PAN certificate copy,HIGH,Identification
+104,22,DOCUMENT,Bank account statement,HIGH,Financial information
+105,23,ELIGIBILITY,Must have PAN and active bank account,HIGH,Financial requirements
+106,23,ELIGIBILITY,Must be Indian resident,HIGH,Residency requirement
+107,23,DOCUMENT,PAN card copy,HIGH,Tax identification
+108,23,DOCUMENT,Bank details and address proof,HIGH,Account linkage
+109,24,ELIGIBILITY,Individual must have PAN,HIGH,Tax identification
+110,24,ELIGIBILITY,Age 18 or above,HIGH,Legal age
+111,24,DOCUMENT,PAN card,HIGH,Tax ID
+112,24,DOCUMENT,Address proof and bank account,HIGH,Verification documents
+113,25,ELIGIBILITY,Age 18 to 65 years for subscription,HIGH,Age criteria
+114,25,ELIGIBILITY,Must provide nominee details,HIGH,Regulatory requirement
+115,25,DOCUMENT,Identity and address proof,HIGH,Verification
+116,25,DOCUMENT,Bank account details,HIGH,Payment processing
+117,26,ELIGIBILITY,Employee must change employer,HIGH,Employment status
+118,26,ELIGIBILITY,Previous employer PF account must be valid,HIGH,Account status
+119,26,DOCUMENT,PF account statement from old employer,HIGH,Balance transfer document
+120,26,DOCUMENT,Form 13 duly filled,HIGH,Transfer application
+121,27,ELIGIBILITY,Employment contract must be terminated,HIGH,Separation criterion
+122,27,ELIGIBILITY,Employee must have completed 2 years service,MEDIUM,Service period
+123,27,DOCUMENT,Termination letter from employer,HIGH,Employment separation proof
+124,27,DOCUMENT,PF account statement,HIGH,Balance verification
+125,28,ELIGIBILITY,Employee must be female,HIGH,Gender specific benefit
+126,28,ELIGIBILITY,Must be covered under ESI scheme,HIGH,Coverage requirement
+127,28,DOCUMENT,Medical examination report,HIGH,Pregnancy verification
+128,28,DOCUMENT,ESI claim documentation,HIGH,Benefit processing
+129,29,ELIGIBILITY,Disability must be permanent or long-term,HIGH,Disability criterion
+130,29,ELIGIBILITY,Certified by qualified medical practitioner,HIGH,Medical certification
+131,29,DOCUMENT,Medical examination report,HIGH,Disability assessment
+132,29,DOCUMENT,Supporting documents from hospital,HIGH,Medical documentation
+133,30,ELIGIBILITY,Age 21 to 32 years for UPSC exam,HIGH,Age limit
+134,30,ELIGIBILITY,Must have completed graduation,HIGH,Educational qualification
+135,30,DOCUMENT,Degree certificate and mark sheets,HIGH,Education proof
+136,30,DOCUMENT,Birth certificate,HIGH,Age verification
+137,30,DOCUMENT,Category certificate if applicable,MEDIUM,For SC/ST/OBC candidates
+138,31,ELIGIBILITY,Age 18 and above,HIGH,Minimum age
+139,31,ELIGIBILITY,Citizenship not a strict requirement for some positions,MEDIUM,Varies by position
+140,31,DOCUMENT,Educational qualifications certificate,HIGH,Eligibility verification
+141,31,DOCUMENT,Address proof and identification,HIGH,Verification documents
+142,32,ELIGIBILITY,Age 18 or above,HIGH,Legal age requirement
+143,32,ELIGIBILITY,Must fulfill nationality requirements,HIGH,Citizenship criterion
+144,32,DOCUMENT,Identity proof (Aadhaar/PAN),HIGH,Identification
+145,32,DOCUMENT,Proof of employment or college enrollment,HIGH,Eligibility proof
+146,32,DOCUMENT,Bank statements showing funds,HIGH,Financial stability
+147,33,ELIGIBILITY,Age 18 to 65 years,HIGH,Age criteria
+148,33,ELIGIBILITY,Citizenship status depends on visa type,MEDIUM,Visa type specific
+149,33,DOCUMENT,Valid passport,HIGH,Travel document
+150,33,DOCUMENT,Proof of financial means,HIGH,Fund verification

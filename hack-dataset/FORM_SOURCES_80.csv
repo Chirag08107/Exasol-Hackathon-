@@ -1,0 +1,151 @@
+source_id,form_id,source_type,source_name,source_url,retrieved_date,verified_date,source_version
+1,1,OFFICIAL_WEBSITE,Income Tax Department - Form ITR-1,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+2,1,OFFICIAL_GUIDELINE,ITR-1 Sahaj Form Instructions,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+3,2,OFFICIAL_WEBSITE,Income Tax Department - Form 49AA (PAN),https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+4,2,OFFICIAL_GUIDELINE,PAN Application Guidelines,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+5,3,OFFICIAL_WEBSITE,GSTN - GST Registration Form REG-01,https://www.gst.gov.in,2024-01-20,2024-01-20,2024
+6,3,OFFICIAL_GUIDELINE,GST Registration Guidelines,https://www.gst.gov.in,2024-01-20,2024-01-20,2024
+7,4,OFFICIAL_WEBSITE,UIDAI - Aadhaar Enrollment Form,https://www.uidai.gov.in,2024-01-20,2024-01-20,2024
+8,4,OFFICIAL_GUIDELINE,Aadhaar Enrollment Process Guide,https://www.uidai.gov.in,2024-01-20,2024-01-20,2024
+9,5,OFFICIAL_WEBSITE,Passport India - Online Application,https://www.passportindia.gov.in,2024-01-20,2024-01-20,2024
+10,5,OFFICIAL_GUIDELINE,Passport Application Instructions,https://www.passportindia.gov.in,2024-01-20,2024-01-20,2024
+11,6,OFFICIAL_WEBSITE,Ministry of Road Transport - DL Form 4,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+12,6,OFFICIAL_GUIDELINE,Driving License Application Guide,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+13,7,OFFICIAL_WEBSITE,Election Commission - Voter Registration Form 6,https://www.eci.gov.in,2024-01-20,2024-01-20,2024
+14,7,OFFICIAL_GUIDELINE,Voter Enrollment Instructions,https://www.eci.gov.in,2024-01-20,2024-01-20,2024
+15,8,OFFICIAL_WEBSITE,RBI - Bank Account Opening Instructions,https://www.rbi.org.in,2024-01-15,2024-01-15,2024
+16,8,OFFICIAL_GUIDELINE,KYC and Account Opening Guidelines,https://www.rbi.org.in,2024-01-15,2024-01-15,2024
+17,9,OFFICIAL_WEBSITE,EPFO - PF Withdrawal Form,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+18,9,OFFICIAL_GUIDELINE,EPF Claim Processing Guidelines,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+19,10,OFFICIAL_WEBSITE,EPFO - Employees Pension Scheme,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+20,10,OFFICIAL_GUIDELINE,EPS Claim Documentation,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+21,11,OFFICIAL_WEBSITE,ESIC - Claim Form ESI-1,https://www.esic.nic.in,2024-01-15,2024-01-15,2024
+22,11,OFFICIAL_GUIDELINE,ESI Claim Processing Instructions,https://www.esic.nic.in,2024-01-15,2024-01-15,2024
+23,12,OFFICIAL_WEBSITE,National Scholarship Portal - NSP,https://scholarships.gov.in,2024-01-20,2024-01-20,2024
+24,12,OFFICIAL_GUIDELINE,Scholarship Application Guidelines,https://scholarships.gov.in,2024-01-20,2024-01-20,2024
+25,13,OFFICIAL_WEBSITE,UGC NET Registration,https://ugcnet.nta.ac.in,2024-01-15,2024-01-15,2024
+26,13,OFFICIAL_GUIDELINE,UGC NET Eligibility and Guidelines,https://ugcnet.nta.ac.in,2024-01-15,2024-01-15,2024
+27,14,OFFICIAL_WEBSITE,State Revenue Department - Property Registration,https://revenuedept.gov.in,2024-01-20,2024-01-20,2024
+28,14,OFFICIAL_GUIDELINE,Property Registration Process,https://revenuedept.gov.in,2024-01-20,2024-01-20,2024
+29,15,OFFICIAL_WEBSITE,State Revenue - Mutation Application,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+30,15,OFFICIAL_GUIDELINE,Land Mutation Guidelines,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+31,16,OFFICIAL_WEBSITE,Parivahan - Vehicle Registration Form 20,https://parivahan.gov.in,2024-01-20,2024-01-20,2024
+32,16,OFFICIAL_GUIDELINE,Vehicle Registration Process,https://parivahan.gov.in,2024-01-20,2024-01-20,2024
+33,17,OFFICIAL_WEBSITE,Parivahan - Vehicle Transfer Form 8,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+34,17,OFFICIAL_GUIDELINE,Vehicle Transfer Instructions,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+35,18,OFFICIAL_WEBSITE,Ayushman Bharat Portal - PMJAY,https://www.pmjay.gov.in,2024-01-20,2024-01-20,2024
+36,18,OFFICIAL_GUIDELINE,Ayushman Bharat Eligibility,https://www.pmjay.gov.in,2024-01-20,2024-01-20,2024
+37,19,OFFICIAL_WEBSITE,Ministry of Petroleum - PAHAL Scheme,https://www.pahal.gov.in,2024-01-15,2024-01-15,2024
+38,19,OFFICIAL_GUIDELINE,LPG Subsidy Transfer Instructions,https://www.pahal.gov.in,2024-01-15,2024-01-15,2024
+39,20,OFFICIAL_WEBSITE,Public Distribution System - Ration Card,https://publicdistribution.gov.in,2024-01-20,2024-01-20,2024
+40,20,OFFICIAL_GUIDELINE,Ration Card Application Process,https://publicdistribution.gov.in,2024-01-20,2024-01-20,2024
+41,21,OFFICIAL_WEBSITE,Social Welfare Department - Pension,https://www.socialwelfare.gov.in,2024-01-15,2024-01-15,2024
+42,21,OFFICIAL_GUIDELINE,Old Age Pension Eligibility,https://www.socialwelfare.gov.in,2024-01-15,2024-01-15,2024
+43,22,OFFICIAL_WEBSITE,Income Tax Department - ITR-2,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+44,22,OFFICIAL_GUIDELINE,ITR-2 Form Instructions,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+45,23,OFFICIAL_WEBSITE,Income Tax Department - ITR-3,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+46,23,OFFICIAL_GUIDELINE,ITR-3 Business Income Guidelines,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+47,24,OFFICIAL_WEBSITE,Income Tax Department - ITR-4,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+48,24,OFFICIAL_GUIDELINE,ITR-4 Presumptive Income Form,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+49,25,OFFICIAL_WEBSITE,Income Tax Department - ITR-5,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+50,25,OFFICIAL_GUIDELINE,ITR-5 Partnership Guidelines,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+51,26,OFFICIAL_WEBSITE,Income Tax Department - ITR-6,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+52,26,OFFICIAL_GUIDELINE,ITR-6 Company Return Guidelines,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+53,27,OFFICIAL_WEBSITE,Income Tax Department - Form 49-FA,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+54,27,OFFICIAL_GUIDELINE,Foreign Tax Credit Guidelines,https://www.incometaxindia.gov.in/forms,2024-01-15,2024-01-15,2024
+55,28,OFFICIAL_WEBSITE,GST Network - GSTR-1 Return,https://www.gst.gov.in,2024-01-20,2024-01-20,2024
+56,28,OFFICIAL_GUIDELINE,GST Return Filing Instructions,https://www.gst.gov.in,2024-01-20,2024-01-20,2024
+57,29,OFFICIAL_WEBSITE,CBIC - Customs Declaration Form C,https://www.cbic.gov.in,2024-01-15,2024-01-15,2024
+58,29,OFFICIAL_GUIDELINE,Customs Procedure Guidelines,https://www.cbic.gov.in,2024-01-15,2024-01-15,2024
+59,30,OFFICIAL_WEBSITE,Passport India - Minor Application,https://www.passportindia.gov.in,2024-01-20,2024-01-20,2024
+60,30,OFFICIAL_GUIDELINE,Minor Passport Application Guidelines,https://www.passportindia.gov.in,2024-01-20,2024-01-20,2024
+61,31,OFFICIAL_WEBSITE,Ministry of External Affairs - Visa,https://www.mea.gov.in,2024-01-20,2024-01-20,2024
+62,31,OFFICIAL_GUIDELINE,Visa Application Guidelines,https://www.mea.gov.in,2024-01-20,2024-01-20,2024
+63,32,OFFICIAL_WEBSITE,Ministry of External Affairs - OCI,https://www.mea.gov.in,2024-01-20,2024-01-20,2024
+64,32,OFFICIAL_GUIDELINE,OCI Application Guidelines,https://www.mea.gov.in,2024-01-20,2024-01-20,2024
+65,33,OFFICIAL_WEBSITE,State Revenue - Domicile Certificate,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+66,33,OFFICIAL_GUIDELINE,Domicile Certificate Process,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+67,34,OFFICIAL_WEBSITE,State Revenue - Caste Certificate,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+68,34,OFFICIAL_GUIDELINE,Caste Certificate Guidelines,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+69,35,OFFICIAL_WEBSITE,State Revenue - Income Certificate,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+70,35,OFFICIAL_GUIDELINE,Income Certificate Process,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+71,36,OFFICIAL_WEBSITE,Commercial Banks - Loan Application,https://www.rbi.org.in,2024-01-15,2024-01-15,2024
+72,36,OFFICIAL_GUIDELINE,Loan Application Guidelines,https://www.rbi.org.in,2024-01-15,2024-01-15,2024
+73,37,OFFICIAL_WEBSITE,CDSL - DEMAT Account Opening,https://www.cdsl.co.in,2024-01-15,2024-01-15,2024
+74,37,OFFICIAL_GUIDELINE,DEMAT Account Guidelines,https://www.cdsl.co.in,2024-01-15,2024-01-15,2024
+75,38,OFFICIAL_WEBSITE,NSE - Trading Account,https://www.nseindia.com,2024-01-15,2024-01-15,2024
+76,38,OFFICIAL_GUIDELINE,Trading Account Guidelines,https://www.nseindia.com,2024-01-15,2024-01-15,2024
+77,39,OFFICIAL_WEBSITE,AMFI - Mutual Fund Investment,https://www.amfiindia.com,2024-01-15,2024-01-15,2024
+78,39,OFFICIAL_GUIDELINE,Mutual Fund Application Process,https://www.amfiindia.com,2024-01-15,2024-01-15,2024
+79,40,OFFICIAL_WEBSITE,PFRDA - NPS Subscription,https://www.nps.gov.in,2024-01-20,2024-01-20,2024
+80,40,OFFICIAL_GUIDELINE,NPS Account Opening Guidelines,https://www.nps.gov.in,2024-01-20,2024-01-20,2024
+81,41,OFFICIAL_WEBSITE,EPFO - Form 13 PF Transfer,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+82,41,OFFICIAL_GUIDELINE,PF Transfer Instructions,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+83,42,OFFICIAL_WEBSITE,EPFO - Form 19 PF Settlement,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+84,42,OFFICIAL_GUIDELINE,PF Settlement Process,https://www.epfindia.gov.in,2024-01-20,2024-01-20,2024
+85,43,OFFICIAL_WEBSITE,ESIC - Maternity Benefit Claim,https://www.esic.nic.in,2024-01-15,2024-01-15,2024
+86,43,OFFICIAL_GUIDELINE,Maternity Benefit Guidelines,https://www.esic.nic.in,2024-01-15,2024-01-15,2024
+87,44,OFFICIAL_WEBSITE,Social Welfare - Disability Certificate,https://socialwelfare.gov.in,2024-01-15,2024-01-15,2024
+88,44,OFFICIAL_GUIDELINE,Disability Assessment Guidelines,https://socialwelfare.gov.in,2024-01-15,2024-01-15,2024
+89,45,OFFICIAL_WEBSITE,UPSC - Civil Services Exam,https://www.upsc.gov.in,2024-01-20,2024-01-20,2024
+90,45,OFFICIAL_GUIDELINE,UPSC Application Guidelines,https://www.upsc.gov.in,2024-01-20,2024-01-20,2024
+91,46,OFFICIAL_WEBSITE,SSC - Staff Selection Commission,https://www.ssc.nic.in,2024-01-20,2024-01-20,2024
+92,46,OFFICIAL_GUIDELINE,SSC Exam Registration,https://www.ssc.nic.in,2024-01-20,2024-01-20,2024
+93,47,OFFICIAL_WEBSITE,RRB - Railway Recruitment,https://www.rrbonlinereg.in,2024-01-20,2024-01-20,2024
+94,47,OFFICIAL_GUIDELINE,Railway Job Application,https://www.rrbonlinereg.in,2024-01-20,2024-01-20,2024
+95,48,OFFICIAL_WEBSITE,Universities - Admission Portal,https://www.ugadmissions.ac.in,2024-01-15,2024-01-15,2024
+96,48,OFFICIAL_GUIDELINE,College Admission Guidelines,https://www.ugadmissions.ac.in,2024-01-15,2024-01-15,2024
+97,49,OFFICIAL_WEBSITE,NTA - JEE Main Registration,https://jeemain.nta.ac.in,2024-01-15,2024-01-15,2024
+98,49,OFFICIAL_GUIDELINE,JEE Application Instructions,https://jeemain.nta.ac.in,2024-01-15,2024-01-15,2024
+99,50,OFFICIAL_WEBSITE,NTA - NEET Exam Registration,https://neet.nta.ac.in,2024-01-15,2024-01-15,2024
+100,50,OFFICIAL_GUIDELINE,NEET Application Guidelines,https://neet.nta.ac.in,2024-01-15,2024-01-15,2024
+101,51,OFFICIAL_WEBSITE,CBSE - Board Exam Registration,https://cbseacademic.nic.in,2024-01-15,2024-01-15,2024
+102,51,OFFICIAL_GUIDELINE,CBSE Exam Registration,https://cbseacademic.nic.in,2024-01-15,2024-01-15,2024
+103,52,OFFICIAL_WEBSITE,Ministry of Education - Fellowship,https://www.eduniti.gov.in,2024-01-20,2024-01-20,2024
+104,52,OFFICIAL_GUIDELINE,Fellowship Application Guidelines,https://www.eduniti.gov.in,2024-01-20,2024-01-20,2024
+105,53,OFFICIAL_WEBSITE,State Revenue - Land Records,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+106,53,OFFICIAL_GUIDELINE,Land Record Application,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+107,54,OFFICIAL_WEBSITE,Sub-Registrar - Encumbrance Certificate,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+108,54,OFFICIAL_GUIDELINE,Encumbrance Certificate Guidelines,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+109,55,OFFICIAL_WEBSITE,Local Authority - NOC Property,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+110,55,OFFICIAL_GUIDELINE,NOC Application Process,https://revenuedept.gov.in,2024-01-15,2024-01-15,2024
+111,56,OFFICIAL_WEBSITE,Testing Center - PUC Certificate,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+112,56,OFFICIAL_GUIDELINE,Pollution Certificate Guidelines,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+113,57,OFFICIAL_WEBSITE,Testing Center - Vehicle Fitness,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+114,57,OFFICIAL_GUIDELINE,Vehicle Fitness Certificate,https://parivahan.gov.in,2024-01-15,2024-01-15,2024
+115,58,OFFICIAL_WEBSITE,Municipal Corporation - Trade License,https://mcdonline.nic.in,2024-01-20,2024-01-20,2024
+116,58,OFFICIAL_GUIDELINE,Trade License Application,https://mcdonline.nic.in,2024-01-20,2024-01-20,2024
+117,59,OFFICIAL_WEBSITE,Municipal Authority - Shop Act License,https://mcdonline.nic.in,2024-01-15,2024-01-15,2024
+118,59,OFFICIAL_GUIDELINE,Shop Act License Guidelines,https://mcdonline.nic.in,2024-01-15,2024-01-15,2024
+119,60,OFFICIAL_WEBSITE,DGFT - Import Export Code,https://www.dgft.gov.in,2024-01-20,2024-01-20,2024
+120,60,OFFICIAL_GUIDELINE,IEC Application Process,https://www.dgft.gov.in,2024-01-20,2024-01-20,2024
+121,61,OFFICIAL_WEBSITE,Ministry of MSME - Udyam Registration,https://udyamregistration.gov.in,2024-01-20,2024-01-20,2024
+122,61,OFFICIAL_GUIDELINE,Udyam Registration Guidelines,https://udyamregistration.gov.in,2024-01-20,2024-01-20,2024
+123,62,OFFICIAL_WEBSITE,DPIIT - Startup India,https://www.startupindia.gov.in,2024-01-20,2024-01-20,2024
+124,62,OFFICIAL_GUIDELINE,Startup Registration Guidelines,https://www.startupindia.gov.in,2024-01-20,2024-01-20,2024
+125,63,OFFICIAL_WEBSITE,BIS - ISI Certification,https://www.bis.gov.in,2024-01-15,2024-01-15,2024
+126,63,OFFICIAL_GUIDELINE,BIS Certification Process,https://www.bis.gov.in,2024-01-15,2024-01-15,2024
+127,64,OFFICIAL_WEBSITE,FSSAI - Food License,https://www.fssai.gov.in,2024-01-20,2024-01-20,2024
+128,64,OFFICIAL_GUIDELINE,FSSAI License Guidelines,https://www.fssai.gov.in,2024-01-20,2024-01-20,2024
+129,65,OFFICIAL_WEBSITE,State Pollution Board - Clearance,https://www.cpcbenvis.nic.in,2024-01-15,2024-01-15,2024
+130,65,OFFICIAL_GUIDELINE,Pollution Board Process,https://www.cpcbenvis.nic.in,2024-01-15,2024-01-15,2024
+131,66,OFFICIAL_WEBSITE,Department of Labour - Factory License,https://labour.gov.in,2024-01-15,2024-01-15,2024
+132,66,OFFICIAL_GUIDELINE,Factory Registration Guidelines,https://labour.gov.in,2024-01-15,2024-01-15,2024
+133,67,OFFICIAL_WEBSITE,Municipal Corporation - Birth Certificate,https://aadhaar.uidai.gov.in,2024-01-20,2024-01-20,2024
+134,67,OFFICIAL_GUIDELINE,Birth Registration Process,https://aadhaar.uidai.gov.in,2024-01-20,2024-01-20,2024
+135,68,OFFICIAL_WEBSITE,Municipal Corporation - Death Certificate,https://aadhaar.uidai.gov.in,2024-01-15,2024-01-15,2024
+136,68,OFFICIAL_GUIDELINE,Death Registration Process,https://aadhaar.uidai.gov.in,2024-01-15,2024-01-15,2024
+137,69,OFFICIAL_WEBSITE,Municipal Corporation - Marriage Certificate,https://aadhaar.uidai.gov.in,2024-01-15,2024-01-15,2024
+138,69,OFFICIAL_GUIDELINE,Marriage Registration Guidelines,https://aadhaar.uidai.gov.in,2024-01-15,2024-01-15,2024
+139,70,OFFICIAL_WEBSITE,District Court - Succession Certificate,https://districts.ecourts.gov.in,2024-01-15,2024-01-15,2024
+140,70,OFFICIAL_GUIDELINE,Succession Certificate Application,https://districts.ecourts.gov.in,2024-01-15,2024-01-15,2024
+141,71,OFFICIAL_WEBSITE,State Bar Council - Notary Services,https://www.barcouncil.org.in,2024-01-15,2024-01-15,2024
+142,71,OFFICIAL_GUIDELINE,Notary Application Guidelines,https://www.barcouncil.org.in,2024-01-15,2024-01-15,2024
+143,72,OFFICIAL_WEBSITE,RTI Online Portal,https://rtionline.gov.in,2024-01-20,2024-01-20,2024
+144,72,OFFICIAL_GUIDELINE,RTI Request Guidelines,https://rtionline.gov.in,2024-01-20,2024-01-20,2024
+145,73,OFFICIAL_WEBSITE,DPIIT - Grievance Portal,https://pgportal.gov.in,2024-01-15,2024-01-15,2024
+146,73,OFFICIAL_GUIDELINE,Grievance Filing Process,https://pgportal.gov.in,2024-01-15,2024-01-15,2024
+147,74,OFFICIAL_WEBSITE,Armed Forces Recruitment,https://www.joinindianarmy.nic.in,2024-01-20,2024-01-20,2024
+148,74,OFFICIAL_GUIDELINE,Military Recruitment Guidelines,https://www.joinindianarmy.nic.in,2024-01-20,2024-01-20,2024
+149,75,OFFICIAL_WEBSITE,State Police - Recruitment,https://ssc.nic.in,2024-01-20,2024-01-20,2024
+150,75,OFFICIAL_GUIDELINE,Police Job Application,https://ssc.nic.in,2024-01-20,2024-01-20,2024

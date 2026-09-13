@@ -1,0 +1,9 @@
+SELECT
+  table_schema,
+  table_name
+FROM
+  EXA_ALL_TABLES
+WHERE
+  table_schema = 'FORM_APP'
+ORDER BY
+  table_name;

@@ -1,0 +1,4 @@
+SELECT
+  COUNT(*) AS form_count
+FROM
+  FORM_KB.FORM;

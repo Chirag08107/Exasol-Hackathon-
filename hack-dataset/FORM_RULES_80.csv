@@ -1,0 +1,151 @@
+rule_id,form_id,field_id,rule_type,rule_expression,error_message,severity
+1,1,1,REQUIRED,[not_empty],Full name is required,HIGH
+2,1,1,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters and spaces (minimum 3 characters),HIGH
+3,1,2,REQUIRED,[not_empty],PAN is required,HIGH
+4,1,2,FORMAT,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,Invalid PAN format - should be ABCDE1234F,HIGH
+5,1,3,REQUIRED,[not_empty],Date of birth is required,HIGH
+6,1,3,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be in DD/MM/YYYY format,HIGH
+7,1,3,DATE_FORMAT,[age >= 18],Must be at least 18 years old,HIGH
+8,1,6,REQUIRED,[not_empty],Income must be entered,HIGH
+9,1,6,FORMAT,^[0-9]+$,Income must be a valid number,HIGH
+10,1,6,FORMAT,[income >= 0],Income cannot be negative,HIGH
+11,2,9,REQUIRED,[not_empty],Father name is required,HIGH
+12,2,9,FORMAT,^[A-Za-z\s]{3,100}$,Father name must contain only letters,HIGH
+13,2,15,CONDITIONAL_REQUIRED,[phone_provided=true],Email is required if phone is provided,MEDIUM
+14,2,15,FORMAT,^[^\s@]+@[^\s@]+\.[^\s@]+$,Invalid email format,HIGH
+15,3,17,REQUIRED,[not_empty],Business name is required,HIGH
+16,3,17,FORMAT,^[A-Za-z0-9\s]{3,100}$,Business name format invalid,HIGH
+17,3,18,REQUIRED,[not_empty],Business turnover is required,HIGH
+18,3,18,FORMAT,[turnover >= 2000000],Turnover must be at least 20 lakhs,HIGH
+19,3,19,REQUIRED,[not_empty],Business PAN is required,HIGH
+20,3,19,FORMAT,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,Invalid PAN format,HIGH
+21,4,23,REQUIRED,[not_empty],Full name is required,HIGH
+22,4,23,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+23,4,24,REQUIRED,[not_empty],Date of birth is required,HIGH
+24,4,24,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+25,4,28,REQUIRED,[not_empty],Mobile number is required,HIGH
+26,4,28,FORMAT,^[0-9]{10}$,Mobile must be exactly 10 digits,HIGH
+27,5,30,REQUIRED,[not_empty],Full name is required,HIGH
+28,5,30,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+29,5,31,REQUIRED,[not_empty],Date of birth is required,HIGH
+30,5,31,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+31,5,31,DATE_FORMAT,[age >= 18],Must be at least 18 years old for passport,HIGH
+32,5,35,REQUIRED,[not_empty],Phone number is required,HIGH
+33,5,35,FORMAT,^[0-9]{10}$,Phone must be exactly 10 digits,HIGH
+34,6,38,REQUIRED,[not_empty],Name is required,HIGH
+35,6,38,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+36,6,39,REQUIRED,[not_empty],Date of birth is required,HIGH
+37,6,39,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+38,6,39,DATE_FORMAT,[age >= 18 AND age <= 65],Age must be between 18 and 65 for driving license,HIGH
+39,6,43,REQUIRED,[not_empty],Mobile number is required,HIGH
+40,6,43,FORMAT,^[0-9]{10}$,Mobile must be exactly 10 digits,HIGH
+41,7,44,REQUIRED,[not_empty],Full name is required,HIGH
+42,7,44,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+43,7,45,REQUIRED,[not_empty],Date of birth is required,HIGH
+44,7,45,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+45,7,45,DATE_FORMAT,[age >= 18],Must be at least 18 years old,HIGH
+46,8,50,REQUIRED,[not_empty],Full name is required,HIGH
+47,8,50,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+48,8,51,REQUIRED,[not_empty],Date of birth is required,HIGH
+49,8,51,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+50,8,55,REQUIRED,[not_empty],Occupation is required,HIGH
+51,8,56,FORMAT,^[0-9]+$,Income must be a valid number,MEDIUM
+52,8,58,REQUIRED,[not_empty],Account type is required,HIGH
+53,8,59,REQUIRED,[not_empty],Mobile number is required,HIGH
+54,8,59,FORMAT,^[0-9]{10}$,Mobile must be exactly 10 digits,HIGH
+55,9,60,REQUIRED,[not_empty],PAN number is required,HIGH
+56,9,60,FORMAT,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,Invalid PAN format,HIGH
+57,9,61,REQUIRED,[not_empty],Aadhaar number is required,HIGH
+58,9,61,FORMAT,^[0-9]{12}$,Aadhaar must be exactly 12 digits,HIGH
+59,9,63,REQUIRED,[not_empty],Mobile number is required,HIGH
+60,9,63,FORMAT,^[0-9]{10}$,Mobile must be exactly 10 digits,HIGH
+61,10,64,REQUIRED,[not_empty],PF account number is required,HIGH
+62,10,64,FORMAT,[pf_account_valid=true],Invalid PF account format,HIGH
+63,10,65,REQUIRED,[not_empty],Full name is required,HIGH
+64,10,65,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+65,10,68,REQUIRED,[not_empty],Claim amount is required,HIGH
+66,10,68,FORMAT,^[0-9]+$,Amount must be a valid number,HIGH
+67,10,68,FORMAT,[amount > 0],Amount must be greater than zero,HIGH
+68,11,70,REQUIRED,[not_empty],ESI claim number is required,HIGH
+69,11,70,FORMAT,^[0-9]{8}$,ESI number must be exactly 8 digits,HIGH
+70,11,71,REQUIRED,[not_empty],Full name is required,HIGH
+71,11,71,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+72,11,74,REQUIRED,[not_empty],Claim amount is required,HIGH
+73,11,74,FORMAT,^[0-9]+$,Amount must be a valid number,HIGH
+74,12,75,REQUIRED,[not_empty],Full name is required,HIGH
+75,12,75,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+76,12,76,REQUIRED,[not_empty],Date of birth is required,HIGH
+77,12,76,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+78,12,79,REQUIRED,[not_empty],Previous marks are required,HIGH
+79,12,79,FORMAT,^[0-9]{1,3}$,Marks must be between 0 and 100,HIGH
+80,12,80,REQUIRED,[not_empty],Family income is required,HIGH
+81,12,80,FORMAT,^[0-9]+$,Income must be a valid number,HIGH
+82,13,81,REQUIRED,[not_empty],Property address is required,HIGH
+83,13,82,REQUIRED,[not_empty],Property type is required,HIGH
+84,13,83,REQUIRED,[not_empty],Owner name is required,HIGH
+85,13,83,FORMAT,^[A-Za-z\s]{3,100}$,Owner name must contain only letters,HIGH
+86,13,84,REQUIRED,[not_empty],Property area is required,HIGH
+87,13,84,FORMAT,^[0-9]+$,Area must be a valid number,HIGH
+88,13,85,REQUIRED,[not_empty],Property value is required,HIGH
+89,13,85,FORMAT,^[0-9]+$,Value must be a valid number,HIGH
+90,14,87,REQUIRED,[not_empty],Property address is required,HIGH
+91,14,88,REQUIRED,[not_empty],Old owner name is required,HIGH
+92,14,88,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+93,14,89,REQUIRED,[not_empty],New owner name is required,HIGH
+94,14,89,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+95,14,91,REQUIRED,[not_empty],Property value is required,HIGH
+96,14,91,FORMAT,^[0-9]+$,Value must be a valid number,HIGH
+97,15,92,REQUIRED,[not_empty],Vehicle owner name is required,HIGH
+98,15,92,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+99,15,94,REQUIRED,[not_empty],Vehicle model is required,HIGH
+100,15,96,REQUIRED,[not_empty],Engine number is required,HIGH
+101,15,96,FORMAT,^[A-Za-z0-9]{12,20}$,Engine number format invalid,HIGH
+102,15,97,REQUIRED,[not_empty],Chassis number is required,HIGH
+103,15,97,FORMAT,^[A-Z0-9]{17}$,Chassis number must be 17 characters,HIGH
+104,16,98,REQUIRED,[not_empty],Registration number is required,HIGH
+105,16,98,FORMAT,^[A-Z]{2}-[0-9]{2}-[A-Z]{2}-[0-9]{4}$,Invalid registration format,HIGH
+106,16,99,REQUIRED,[not_empty],Current owner name is required,HIGH
+107,16,99,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+108,16,100,REQUIRED,[not_empty],New owner name is required,HIGH
+109,16,100,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+110,16,101,REQUIRED,[not_empty],Transfer date is required,HIGH
+111,16,101,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+112,17,102,REQUIRED,[not_empty],Full name is required,HIGH
+113,17,102,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+114,17,105,REQUIRED,[not_empty],Family size is required,HIGH
+115,17,105,FORMAT,^[1-9]$,Family size must be between 1 and 9,HIGH
+116,17,106,REQUIRED,[not_empty],Family income is required,HIGH
+117,17,106,FORMAT,^[0-9]+$,Income must be a valid number,HIGH
+118,18,108,REQUIRED,[not_empty],Full name is required,HIGH
+119,18,108,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+120,18,109,REQUIRED,[not_empty],Connection ID is required,HIGH
+121,18,109,FORMAT,^[0-9]{13}$,Connection ID must be 13 digits,HIGH
+122,18,110,REQUIRED,[not_empty],Mobile number is required,HIGH
+123,18,110,FORMAT,^[0-9]{10}$,Mobile must be exactly 10 digits,HIGH
+124,18,111,REQUIRED,[not_empty],Aadhaar number is required,HIGH
+125,18,111,FORMAT,^[0-9]{12}$,Aadhaar must be exactly 12 digits,HIGH
+126,19,113,REQUIRED,[not_empty],Full name is required,HIGH
+127,19,113,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+128,19,115,REQUIRED,[not_empty],Family members count is required,HIGH
+129,19,115,FORMAT,^[1-9]$,Family size must be between 1 and 9,HIGH
+130,19,117,REQUIRED,[not_empty],Annual income is required,HIGH
+131,19,117,FORMAT,^[0-9]+$,Income must be a valid number,HIGH
+132,20,118,REQUIRED,[not_empty],Full name is required,HIGH
+133,20,118,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+134,20,119,REQUIRED,[not_empty],Date of birth is required,HIGH
+135,20,119,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+136,20,119,DATE_FORMAT,[age >= 60],Must be at least 60 years old for pension,HIGH
+137,20,122,REQUIRED,[not_empty],Bank account is required,HIGH
+138,20,122,FORMAT,^[0-9]{16}$,Bank account must be 16 digits,HIGH
+139,21,123,REQUIRED,[not_empty],Applicant name is required,HIGH
+140,21,123,FORMAT,^[A-Za-z\s]{3,100}$,Name must contain only letters,HIGH
+141,21,124,REQUIRED,[not_empty],Date of birth is required,HIGH
+142,21,124,DATE_FORMAT,^\d{2}/\d{2}/\d{4}$,Date must be DD/MM/YYYY format,HIGH
+143,21,126,REQUIRED,[not_empty],Monthly income is required,HIGH
+144,21,126,FORMAT,^[0-9]+$,Income must be a valid number,HIGH
+145,21,127,REQUIRED,[not_empty],Loan amount is required,HIGH
+146,21,127,FORMAT,^[0-9]+$,Amount must be a valid number,HIGH
+147,21,128,REQUIRED,[not_empty],Loan tenure is required,HIGH
+148,21,128,FORMAT,^[0-9]{2,3}$,Tenure must be 2-3 digits,HIGH
+149,22,129,REQUIRED,[not_empty],PAN is required,HIGH
+150,22,129,FORMAT,^[A-Z]{5}[0-9]{4}[A-Z]{1}$,Invalid PAN format,HIGH
