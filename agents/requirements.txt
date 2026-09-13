@@ -1,0 +1,4 @@
+pyexasol
+pydantic
+python-dotenv
+pypdf
