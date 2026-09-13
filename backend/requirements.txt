@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pyexasol
+python-dotenv
+pyjwt
+pwdlib[argon2]
+google-auth
+requests

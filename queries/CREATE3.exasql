@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS FORM_APP.USER_ACCOUNT (
+  user_id INT PRIMARY KEY,
+  first_name VARCHAR(100),
+  middle_name VARCHAR(100),
+  last_name VARCHAR(100),
+  username VARCHAR(100),
+  email VARCHAR(255),
+  password_hash VARCHAR(500),
+  google_sub VARCHAR(255),
+  phone VARCHAR(30),
+  address VARCHAR(500),
+  aadhaar_number VARCHAR(20),
+  verified BOOLEAN
+);
