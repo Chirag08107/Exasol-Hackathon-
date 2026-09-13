@@ -40,5 +40,3 @@ Open **http://localhost:3000**. Backend API runs at **http://127.0.0.1:8000** (d
 ## Notes
 - Sign up → Login work immediately. **Verify** (phone OTP) requires a real `TWOFACTOR_API_KEY` — it sends an actual SMS, so only test it when you mean to.
 - Form-filling (search → answer questions → get PDF) requires a verified account.
-- Only the **PAN Card (Form 93)** has a working PDF template today; other forms will ask questions but can't generate a PDF yet.
-- The `agents/` folder is a standalone pipeline (Detective → Researcher → Guide → QA → PDF filler) usable independently — see `agents/README.md` and `python -m agents.demo.fill_pan_demo`.
